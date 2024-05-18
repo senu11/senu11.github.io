@@ -1,0 +1,249 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>逻辑越权 | senu11</title><meta name="author" content="senu11"><meta name="copyright" content="senu11"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.水平、垂直越权 1.相关基础知识产生越权的原理 1.前端UI界面根据用户等级不同，进行了部分可选功能显示 2.后端数据库中，根据用户等级的不同，设置了相应的组别，只要是该组别的用户就可以进行相应的操作 在访问网站时，数据包中有相应的传输用户的编号、用户组编号或者类型编号 1.水平越权通过更换ID之类的身份标识，从而使A账号获取（修改、删除）B账号的数据，但A、B拥有相同的权限等级，也即属于同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逻辑越权">
+<meta property="og:url" content="http://example.com/2020/06/20/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/">
+<meta property="og:site_name" content="senu11">
+<meta property="og:description" content="1.水平、垂直越权 1.相关基础知识产生越权的原理 1.前端UI界面根据用户等级不同，进行了部分可选功能显示 2.后端数据库中，根据用户等级的不同，设置了相应的组别，只要是该组别的用户就可以进行相应的操作 在访问网站时，数据包中有相应的传输用户的编号、用户组编号或者类型编号 1.水平越权通过更换ID之类的身份标识，从而使A账号获取（修改、删除）B账号的数据，但A、B拥有相同的权限等级，也即属于同">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/1.png">
+<meta property="article:published_time" content="2020-06-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-18T19:42:00.251Z">
+<meta property="article:author" content="senu11">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/1.png"><link rel="shortcut icon" href="/img/head.png"><link rel="canonical" href="http://example.com/2020/06/20/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"簡","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":730,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: senu11","link":"链接: ","source":"来源: senu11","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '逻辑越权',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-19 03:42:00'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">131</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/1.png')"><nav id="nav"><span id="blog-info"><a href="/" title="senu11"><span class="site-name">senu11</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">逻辑越权</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-06-19T16:00:00.000Z" title="发表于 2020-06-20 00:00:00">2020-06-20</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-18T19:42:00.251Z" title="更新于 2024-05-19 03:42:00">2024-05-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="逻辑越权"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<h2 id="1-水平、垂直越权"><a href="#1-水平、垂直越权" class="headerlink" title="1.水平、垂直越权"></a>1.水平、垂直越权</h2><p><img src="image-20210802234218867.png" alt="image-20210802234218867"></p>
+<h3 id="1-相关基础知识"><a href="#1-相关基础知识" class="headerlink" title="1.相关基础知识"></a>1.相关基础知识</h3><p><strong>产生越权的原理</strong></p>
+<p>1.前端UI界面根据用户等级不同，进行了部分可选功能显示</p>
+<p>2.后端数据库中，根据用户等级的不同，设置了相应的组别，只要是该组别的用户就可以进行相应的操作</p>
+<p>在访问网站时，数据包中有相应的传输用户的编号、用户组编号或者类型编号</p>
+<h4 id="1-水平越权"><a href="#1-水平越权" class="headerlink" title="1.水平越权"></a>1.水平越权</h4><p>通过更换ID之类的身份标识，从而使A账号获取（修改、删除）B账号的数据，但A、B拥有相同的权限等级，也即属于同一组之类。这是由于服务器端在接收到请求数据进行操作时没有判断数据的所属人&#x2F;所属部门而导致的越权数据访问漏洞。 </p>
+<p> <img src="image-20210802234353701.png" alt="image-20210802234353701"></p>
+<h4 id="2-垂直越权"><a href="#2-垂直越权" class="headerlink" title="2.垂直越权"></a>2.垂直越权</h4><p>通过低权限账户发送高权限账户才能有的请求，获取高权限的操作</p>
+<p>由于后台应用没有做权限控制，或仅仅在菜单、按钮上做了权限控制，导致恶意用户只要猜测其他管理页面的URL或者敏感的参数信息，就可以访问或控制其他角色拥有的数据或页面，达到权限提升的目的。</p>
+<p> <img src="image-20210802234605476.png" alt="image-20210802234605476"></p>
+<p>普通用户获取管理员的权限，一般需要知道管理员操作界面的数据包，而获取数据包的方法有</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.根据后台，自己本地搭建一样的平台进行抓包分析构造</span><br><span class="line"></span><br><span class="line">2.普通用户前端操作界面抓取数据包</span><br><span class="line"></span><br><span class="line">3.盲猜 </span><br></pre></td></tr></table></figure>
+
+<h4 id="3-未授权访问"><a href="#3-未授权访问" class="headerlink" title="3.未授权访问"></a>3.未授权访问</h4><p>删除请求中的认证信息后重放改请求，依旧可以访问完成该操作</p>
+<p>26种未授权访问漏洞总结：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_29277155/article/details/108390891?utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control">https://blog.csdn.net/qq_29277155/article/details/108390891?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control</a></p>
+<h3 id="2-工具检测"><a href="#2-工具检测" class="headerlink" title="2.工具检测"></a>2.工具检测</h3><p>1.中通安全开源项目之越权漏洞自动化检测</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ztosec/secscan-authcheck">https://github.com/ztosec/secscan-authcheck</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/vwF7aTvk-U-SnJqO3f80gA">https://mp.weixin.qq.com/s/vwF7aTvk-U-SnJqO3f80gA</a></p>
+<p> 2.高版本burp插件Authz，在burp自带的商店里面进行安装即可</p>
+<p>3.小米范</p>
+<h3 id="3-修复"><a href="#3-修复" class="headerlink" title="3.修复"></a>3.修复</h3><p>1.前后端同时对用户输入信息进行校验，双重验证机制</p>
+<p>2.调用功能前验证用户是否有权限调用相关功能</p>
+<p>3.执行关键操作前必须验证用户身份，验证用户是否具备操作数据的权限</p>
+<p>4.直接对象引用的加密资源工防止攻击者枚举ID，敏感数据特殊化处理</p>
+<p>5.永远不要相信来自用户的输入，对于可控参数进行严格的检查与过滤</p>
+<h2 id="2-支付数据篡改安全"><a href="#2-支付数据篡改安全" class="headerlink" title="2.支付数据篡改安全"></a>2.支付数据篡改安全</h2><h3 id="1-登陆点"><a href="#1-登陆点" class="headerlink" title="1.登陆点"></a>1.登陆点</h3><h4 id="1-登陆点暴力破解"><a href="#1-登陆点暴力破解" class="headerlink" title="1.登陆点暴力破解"></a>1.登陆点暴力破解</h4><p>未加密就直接爆破，加密涉及到下面的协议</p>
+<h4 id="2-HHTP-HTTPS传输"><a href="#2-HHTP-HTTPS传输" class="headerlink" title="2.HHTP&#x2F;HTTPS传输"></a>2.HHTP&#x2F;HTTPS传输</h4><p>HTTP采用明文传输，HTTPS采用加密传输，若进行HTTPS网站进行爆破，需要先猜解加密形式才能进行爆破</p>
+<p>字典：<a target="_blank" rel="noopener" href="https://github.com/huyuanzhi2/password_brute_dictionary">https://github.com/huyuanzhi2/password_brute_dictionary</a></p>
+<p>一般进行加密破解有两种方法</p>
+<p>1.burp</p>
+<p>在设置了爆破字典之后，要选择payload processing中的hash，选择对应的加密方式</p>
+<p><img src="image-20210803000445658.png" alt="image-20210803000445658"><img src="image-20210803000455114.png" alt="image-20210803000455114"></p>
+<h4 id="3-cookie脆弱点验证"><a href="#3-cookie脆弱点验证" class="headerlink" title="3.cookie脆弱点验证"></a>3.cookie脆弱点验证</h4><p>即cookie验证时只验证了 </p>
+<p>1.黑盒</p>
+<p> 也就是在没有源码的情况下，查看数据包的cookie出有没有可操作性，比如将以下cookie做更改可以登录到test账户</p>
+<p><img src="image-20210803000528947.png" alt="image-20210803000528947"></p>
+<p>2.白盒</p>
+<p>也即是代码审计，熊海cms 1.0 存在这种情况</p>
+<h4 id="4-session固定点测试"><a href="#4-session固定点测试" class="headerlink" title="4.session固定点测试"></a>4.session固定点测试</h4><h4 id="5-验证密文对比安全测试"><a href="#5-验证密文对比安全测试" class="headerlink" title="5.验证密文对比安全测试"></a>5.验证密文对比安全测试</h4><h3 id="2-业务点"><a href="#2-业务点" class="headerlink" title="2.业务点"></a>2.业务点</h3><p>业务点也即涉及到篡改数据</p>
+<p>原理、检测、危害、修复等： <a target="_blank" rel="noopener" href="https://www.secpulse.com/archives/67080.html">https://www.secpulse.com/archives/67080.html</a></p>
+<p><strong>商品购买流程</strong></p>
+<p>选择商品和数量-选择支付以及配送方式-生成顶单编号-订单支付选择-完成支付</p>
+<p><strong>常见篡改参数</strong></p>
+<p>商品编号ID、购买价格、购买数量、支付方式、订单号、支付状态‘</p>
+<p><strong>常见修改方法</strong></p>
+<p>替换支付、重复支付、最小额支付、负数支付、溢出支付、优惠卷支付等等</p>
+<h2 id="3-找回机制及接口安全"><a href="#3-找回机制及接口安全" class="headerlink" title="3.找回机制及接口安全"></a>3.找回机制及接口安全</h2><h3 id="1-找回机制"><a href="#1-找回机制" class="headerlink" title="1.找回机制"></a>1.找回机制</h3><h4 id="1-客户端回显"><a href="#1-客户端回显" class="headerlink" title="1.客户端回显"></a>1.客户端回显</h4><p>验证码在浏览器数据中可以看到</p>
+<h4 id="2-response状态值"><a href="#2-response状态值" class="headerlink" title="2.response状态值"></a>2.response状态值</h4><p>在进行请求之后服务器会有返回值，我们就可对此回显值进行修改为正确的值，此时如果服务器是以浏览器回显值作为验证，那么此时修改回显值就可以有效绕过验证，如果是以服务器为准，那么修改无效</p>
+<p>修改状态值</p>
+<p><img src="image-20210803001149690.png" alt="image-20210803001149690"></p>
+<h4 id="3-验证码爆破"><a href="#3-验证码爆破" class="headerlink" title="3.验证码爆破"></a>3.验证码爆破</h4><p>目标在验证码验证时没有进行次数限制、验证码时效较长、客户端没有验证码(如每次点击都有新的验证码、点击图片、点击文字等，有可进行识别绕过，有收费版和免费的，效果参差不一)</p>
+<p>注意可能爆破返回值长度一样，此时可能会成功，就需要自己一个一个取查看返回值是不是一样进行验证</p>
+<h4 id="4-找回流程绕过"><a href="#4-找回流程绕过" class="headerlink" title="4.找回流程绕过"></a>4.找回流程绕过</h4><p>例如-墨者-登陆密码重置漏洞分析溯源</p>
+<p>在充值密码时，只接受了要重置的账户，并发送了验证码，但是并没有二次进行验证所要重置的账户是不是之前发送验证码的账户</p>
+<h4 id="5-session覆盖"><a href="#5-session覆盖" class="headerlink" title="5.session覆盖"></a>5.session覆盖</h4><h4 id="6-弱token缺陷"><a href="#6-弱token缺陷" class="headerlink" title="6.弱token缺陷"></a>6.弱token缺陷</h4><h3 id="2-接口调用"><a href="#2-接口调用" class="headerlink" title="2.接口调用"></a>2.接口调用</h3><h4 id="1-调用遍历"><a href="#1-调用遍历" class="headerlink" title="1.调用遍历"></a>1.调用遍历</h4><h4 id="2-参数篡改"><a href="#2-参数篡改" class="headerlink" title="2.参数篡改"></a>2.参数篡改</h4><h4 id="3-未授权访问-1"><a href="#3-未授权访问-1" class="headerlink" title="3.未授权访问"></a>3.未授权访问</h4><h4 id="4-callback自定义"><a href="#4-callback自定义" class="headerlink" title="4.callback自定义"></a>4.callback自定义</h4><h4 id="危害"><a href="#危害" class="headerlink" title="危害"></a>危害</h4><p>1.短信轰炸</p>
+<p>例如请求下面的数据包，就会造成发送验证码，此时可以写一个循环请求，就会一直发送验证码</p>
+<p><img src="image-20210803001438953.png" alt="image-20210803001438953"></p>
+<p>2.来电轰炸</p>
+<h2 id="4-验证码、token、接口"><a href="#4-验证码、token、接口" class="headerlink" title="4.验证码、token、接口"></a>4.验证码、token、接口</h2><h3 id="1-token"><a href="#1-token" class="headerlink" title="1.token"></a>1.token</h3><p>用于检验数据包唯一性</p>
+<h4 id="1-爆破"><a href="#1-爆破" class="headerlink" title="1.爆破"></a>1.爆破</h4><p>1.根据token的格式猜测加密形式以及未来出现的值，不大可能猜得到~</p>
+<p>2.burp进行爆破，也即下面的回显爆破</p>
+<h4 id="2-回显"><a href="#2-回显" class="headerlink" title="2.回显"></a>2.回显</h4><p>请求之后，在返回数据包可查看到token</p>
+<p>爆破时，选择token爆破type为</p>
+<p><img src="image-20210803001532536.png" alt="image-20210803001532536"></p>
+<p>线程设置为1，设置重定向</p>
+<p><img src="image-20210803001548822.png" alt="image-20210803001548822"></p>
+<p>再选择Grep-Extract,添加token值</p>
+<p><img src="image-20210803001602502.png" alt="image-20210803001602502"></p>
+<p>点击ok即可</p>
+<h4 id="3-固定"><a href="#3-固定" class="headerlink" title="3.固定"></a>3.固定</h4><h3 id="2-验证码"><a href="#2-验证码" class="headerlink" title="2.验证码"></a>2.验证码</h3><p>分类：图片、手机或邮箱、语音、视频、操作等</p>
+<p>原理：验证生成或验证过程中的逻辑问题</p>
+<p>危害：账户权限泄露、短信轰炸、遍历、任意用户操作等</p>
+<h4 id="1-爆破-1"><a href="#1-爆破-1" class="headerlink" title="1.爆破"></a>1.爆破</h4><h4 id="2-识别"><a href="#2-识别" class="headerlink" title="2.识别"></a>2.识别</h4><p>1.工具：Pkav_Http_Fuzz</p>
+<p> 缺点：不支持第三方拓展，只能在其上操作数据包</p>
+<p>2.插件</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/nul1/p/12071115.html">https://www.cnblogs.com/nul1/p/12071115.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/c0ny1/captcha-killer/releases">https://github.com/c0ny1/captcha-killer/releases</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/bit4woo/reCAPTCHA/releases">https://github.com/bit4woo/reCAPTCHA/releases</a></p>
+<p> 免费的效果不太好，付费的还行。。</p>
+<h4 id="3-复用"><a href="#3-复用" class="headerlink" title="3.复用"></a>3.复用</h4><h5 id="1-服务端校验不完全"><a href="#1-服务端校验不完全" class="headerlink" title="1.服务端校验不完全"></a>1.服务端校验不完全</h5><p>验证码在服务端进行比对之后没有删除，造成了可被多次利用</p>
+<p>例如pikachu靶场提示了</p>
+<p><img src="image-20210803001634718.png" alt="image-20210803001634718"></p>
+<h5 id="2-客户端校验"><a href="#2-客户端校验" class="headerlink" title="2.客户端校验"></a>2.客户端校验</h5><p>查看网页源代码，查看是否有检测验证码的相关js函数，有时候时把检测js代码封装为一个js文件，所以这时看不到js代码，就要抓包查看加载的一些js文件是否有相关的验证代码</p>
+<p> <img src="image-20210803001701826.png" alt="image-20210803001701826"></p>
+<h4 id="4-回显"><a href="#4-回显" class="headerlink" title="4.回显"></a>4.回显</h4><h3 id="3-接口安全问题"><a href="#3-接口安全问题" class="headerlink" title="3.接口安全问题"></a>3.接口安全问题</h3><p>调用、遍历、未授权、篡改等</p>
+<p>调用案例：短信轰炸</p>
+<p>遍历案例：例如水平越权遍历用户的UID来达到其他用户</p>
+<h4 id="callback回调"><a href="#callback回调" class="headerlink" title="callback回调"></a>callback回调</h4><p><img src="image-20210803001818356.png" alt="image-20210803001818356"></p>
+<p>可以将以上回调地址修改为跨站漏洞~</p>
+<p>一般像callback这种含有关键字的漏洞漏洞发现可以使用burp爬虫来代替手工进行发现，当数量达到一定程度之后，在history中可以搜索关键字来进行二次复查，符合条件的可以导出，一些工具可以进行数据包二次扫描</p>
+<p><img src="image-20210803001846351.png" alt="image-20210803001846351"></p>
+<p><img src="image-20210803001856404.png" alt="image-20210803001856404"></p>
+<h4 id="数据篡改"><a href="#数据篡改" class="headerlink" title="数据篡改"></a>数据篡改</h4><p>墨者靶场</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">senu11</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/06/20/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/">http://example.com/2020/06/20/业务逻辑越权/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">senu11</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/06/19/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86-CDN%E7%BB%95%E8%BF%87/" title="CDN绕过"><img class="cover" src="/img/1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">CDN绕过</div></div></a></div><div class="next-post pull-right"><a href="/2020/06/21/%E5%AD%90%E5%9F%9F%E5%90%8D%E6%8E%A5%E7%AE%A1/" title="子域名接管"><img class="cover" src="/img/1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">子域名接管</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%B0%B4%E5%B9%B3%E3%80%81%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83"><span class="toc-number">1.</span> <span class="toc-text">1.水平、垂直越权</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%9B%B8%E5%85%B3%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.1.</span> <span class="toc-text">1.相关基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%B0%B4%E5%B9%B3%E8%B6%8A%E6%9D%83"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.水平越权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83"><span class="toc-number">1.1.2.</span> <span class="toc-text">2.垂直越权</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.未授权访问</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%B7%A5%E5%85%B7%E6%A3%80%E6%B5%8B"><span class="toc-number">1.2.</span> <span class="toc-text">2.工具检测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BF%AE%E5%A4%8D"><span class="toc-number">1.3.</span> <span class="toc-text">3.修复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%94%AF%E4%BB%98%E6%95%B0%E6%8D%AE%E7%AF%A1%E6%94%B9%E5%AE%89%E5%85%A8"><span class="toc-number">2.</span> <span class="toc-text">2.支付数据篡改安全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%99%BB%E9%99%86%E7%82%B9"><span class="toc-number">2.1.</span> <span class="toc-text">1.登陆点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%99%BB%E9%99%86%E7%82%B9%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.登陆点暴力破解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-HHTP-HTTPS%E4%BC%A0%E8%BE%93"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.HHTP&#x2F;HTTPS传输</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-cookie%E8%84%86%E5%BC%B1%E7%82%B9%E9%AA%8C%E8%AF%81"><span class="toc-number">2.1.3.</span> <span class="toc-text">3.cookie脆弱点验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-session%E5%9B%BA%E5%AE%9A%E7%82%B9%E6%B5%8B%E8%AF%95"><span class="toc-number">2.1.4.</span> <span class="toc-text">4.session固定点测试</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E9%AA%8C%E8%AF%81%E5%AF%86%E6%96%87%E5%AF%B9%E6%AF%94%E5%AE%89%E5%85%A8%E6%B5%8B%E8%AF%95"><span class="toc-number">2.1.5.</span> <span class="toc-text">5.验证密文对比安全测试</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%9A%E5%8A%A1%E7%82%B9"><span class="toc-number">2.2.</span> <span class="toc-text">2.业务点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%89%BE%E5%9B%9E%E6%9C%BA%E5%88%B6%E5%8F%8A%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8"><span class="toc-number">3.</span> <span class="toc-text">3.找回机制及接口安全</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%89%BE%E5%9B%9E%E6%9C%BA%E5%88%B6"><span class="toc-number">3.1.</span> <span class="toc-text">1.找回机制</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%9B%9E%E6%98%BE"><span class="toc-number">3.1.1.</span> <span class="toc-text">1.客户端回显</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-response%E7%8A%B6%E6%80%81%E5%80%BC"><span class="toc-number">3.1.2.</span> <span class="toc-text">2.response状态值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E9%AA%8C%E8%AF%81%E7%A0%81%E7%88%86%E7%A0%B4"><span class="toc-number">3.1.3.</span> <span class="toc-text">3.验证码爆破</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%89%BE%E5%9B%9E%E6%B5%81%E7%A8%8B%E7%BB%95%E8%BF%87"><span class="toc-number">3.1.4.</span> <span class="toc-text">4.找回流程绕过</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-session%E8%A6%86%E7%9B%96"><span class="toc-number">3.1.5.</span> <span class="toc-text">5.session覆盖</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E5%BC%B1token%E7%BC%BA%E9%99%B7"><span class="toc-number">3.1.6.</span> <span class="toc-text">6.弱token缺陷</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%8E%A5%E5%8F%A3%E8%B0%83%E7%94%A8"><span class="toc-number">3.2.</span> <span class="toc-text">2.接口调用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E8%B0%83%E7%94%A8%E9%81%8D%E5%8E%86"><span class="toc-number">3.2.1.</span> <span class="toc-text">1.调用遍历</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%8F%82%E6%95%B0%E7%AF%A1%E6%94%B9"><span class="toc-number">3.2.2.</span> <span class="toc-text">2.参数篡改</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE-1"><span class="toc-number">3.2.3.</span> <span class="toc-text">3.未授权访问</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-callback%E8%87%AA%E5%AE%9A%E4%B9%89"><span class="toc-number">3.2.4.</span> <span class="toc-text">4.callback自定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%B1%E5%AE%B3"><span class="toc-number">3.2.5.</span> <span class="toc-text">危害</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E9%AA%8C%E8%AF%81%E7%A0%81%E3%80%81token%E3%80%81%E6%8E%A5%E5%8F%A3"><span class="toc-number">4.</span> <span class="toc-text">4.验证码、token、接口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-token"><span class="toc-number">4.1.</span> <span class="toc-text">1.token</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%88%86%E7%A0%B4"><span class="toc-number">4.1.1.</span> <span class="toc-text">1.爆破</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E5%9B%9E%E6%98%BE"><span class="toc-number">4.1.2.</span> <span class="toc-text">2.回显</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%9B%BA%E5%AE%9A"><span class="toc-number">4.1.3.</span> <span class="toc-text">3.固定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%AA%8C%E8%AF%81%E7%A0%81"><span class="toc-number">4.2.</span> <span class="toc-text">2.验证码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E7%88%86%E7%A0%B4-1"><span class="toc-number">4.2.1.</span> <span class="toc-text">1.爆破</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E8%AF%86%E5%88%AB"><span class="toc-number">4.2.2.</span> <span class="toc-text">2.识别</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%A4%8D%E7%94%A8"><span class="toc-number">4.2.3.</span> <span class="toc-text">3.复用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%A0%A1%E9%AA%8C%E4%B8%8D%E5%AE%8C%E5%85%A8"><span class="toc-number">4.2.3.1.</span> <span class="toc-text">1.服务端校验不完全</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%A0%A1%E9%AA%8C"><span class="toc-number">4.2.3.2.</span> <span class="toc-text">2.客户端校验</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E5%9B%9E%E6%98%BE"><span class="toc-number">4.2.4.</span> <span class="toc-text">4.回显</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E6%8E%A5%E5%8F%A3%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="toc-number">4.3.</span> <span class="toc-text">3.接口安全问题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#callback%E5%9B%9E%E8%B0%83"><span class="toc-number">4.3.1.</span> <span class="toc-text">callback回调</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%AF%A1%E6%94%B9"><span class="toc-number">4.3.2.</span> <span class="toc-text">数据篡改</span></a></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background: #FFFFFF"><div id="footer-wrap"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">簡</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

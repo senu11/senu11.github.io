@@ -1,0 +1,292 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>常用webshell连接工具流量特征和攻击判断 | senu11</title><meta name="author" content="senu11"><meta name="copyright" content="senu11"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.菜刀后门自测：https:&#x2F;&#x2F;github.com&#x2F;raddyfiy&#x2F;caidao-official-version 1.1静态特征1234PHP:    &lt;?php @eval($_POST[&#x27;1&#x27;]);?&gt;ASP:    &lt;%eval request(&quot;1&quot;)%&gt;ASP.NET:    &lt;%@ Page Languag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用webshell连接工具流量特征和攻击判断">
+<meta property="og:url" content="http://example.com/2020/10/15/%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%92%8C%E6%94%BB%E5%87%BB%E5%88%A4%E6%96%AD/">
+<meta property="og:site_name" content="senu11">
+<meta property="og:description" content="1.菜刀后门自测：https:&#x2F;&#x2F;github.com&#x2F;raddyfiy&#x2F;caidao-official-version 1.1静态特征1234PHP:    &lt;?php @eval($_POST[&#x27;1&#x27;]);?&gt;ASP:    &lt;%eval request(&quot;1&quot;)%&gt;ASP.NET:    &lt;%@ Page Languag">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/1.png">
+<meta property="article:published_time" content="2020-10-15T12:17:00.000Z">
+<meta property="article:modified_time" content="2024-05-18T19:45:40.641Z">
+<meta property="article:author" content="senu11">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/1.png"><link rel="shortcut icon" href="/img/head.png"><link rel="canonical" href="http://example.com/2020/10/15/%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%92%8C%E6%94%BB%E5%87%BB%E5%88%A4%E6%96%AD/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"簡","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":730,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: senu11","link":"链接: ","source":"来源: senu11","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '常用webshell连接工具流量特征和攻击判断',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-05-19 03:45:40'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">61</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">131</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/1.png')"><nav id="nav"><span id="blog-info"><a href="/" title="senu11"><span class="site-name">senu11</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">常用webshell连接工具流量特征和攻击判断</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-15T12:17:00.000Z" title="发表于 2020-10-15 20:17:00">2020-10-15</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-18T19:45:40.641Z" title="更新于 2024-05-19 03:45:40">2024-05-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/bt/">bt</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="常用webshell连接工具流量特征和攻击判断"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+<h2 id="1-菜刀"><a href="#1-菜刀" class="headerlink" title="1.菜刀"></a>1.菜刀</h2><p>后门自测：<a target="_blank" rel="noopener" href="https://github.com/raddyfiy/caidao-official-version">https://github.com/raddyfiy/caidao-official-version</a></p>
+<h3 id="1-1静态特征"><a href="#1-1静态特征" class="headerlink" title="1.1静态特征"></a>1.1静态特征</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PHP:    &lt;?php @eval($_POST[&#x27;1&#x27;]);?&gt;</span><br><span class="line">ASP:    &lt;%eval request(&quot;1&quot;)%&gt;</span><br><span class="line">ASP.NET:    &lt;%@ Page Language=&quot;Jscript&quot;%&gt;&lt;%eval(Request.Item[&quot;1&quot;],&quot;unsafe&quot;);%&gt;</span><br><span class="line">&lt;%eval(Request.Item[&quot;1&quot;],&quot;unsafe&quot;);%&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2动态特征"><a href="#1-2动态特征" class="headerlink" title="1.2动态特征"></a>1.2动态特征</h3><h4 id="1-2-1请求包"><a href="#1-2-1请求包" class="headerlink" title="1.2.1请求包"></a>1.2.1请求包</h4><p>ua头为百度爬虫</p>
+<p>请求体中存在eavl，base64等特征字符</p>
+<p>请求体中传递的payload为base64编码，并且存在固定的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">QGluaV9zZXQoImRpc3BsYXlfZXJyb3JzIiwiMCIpO0BzZXRfdGltZV9saW1pdCgwKTtpZihQSFBfVkVSU0lPTjwnNS4zLjAnKXtAc2V0X21hZ2ljX3F1b3Rlc19ydW50aW1lKDApO307ZWNobygiWEBZIik7J</span><br></pre></td></tr></table></figure>
+
+<p>另外就是很明显的一个base64解密式和一个payload</p>
+<h4 id="1-2-2返回包"><a href="#1-2-2返回包" class="headerlink" title="1.2.2返回包"></a>1.2.2返回包</h4><p>响应为明文，格式为<a href="mailto:并且在X@Y./">X@Y   结果</a>X@Y之中</p>
+<p>php的webshel中流量参数z0、z1、z2</p>
+<h2 id="2-蚁剑"><a href="#2-蚁剑" class="headerlink" title="2.蚁剑"></a>2.蚁剑</h2><p><a target="_blank" rel="noopener" href="https://github.com/AntSwordProject/antSword">https://github.com/AntSwordProject/antSword</a></p>
+<h3 id="2-1静态特征"><a href="#2-1静态特征" class="headerlink" title="2.1静态特征"></a>2.1静态特征</h3><h3 id="2-2动态特征"><a href="#2-2动态特征" class="headerlink" title="2.2动态特征"></a>2.2动态特征</h3><h5 id="2-2-1默认编码连接时"><a href="#2-2-1默认编码连接时" class="headerlink" title="2.2.1默认编码连接时"></a>2.2.1默认编码连接时</h5><p>一句话webshell</p>
+<h6 id="请求包"><a href="#请求包" class="headerlink" title="请求包"></a>请求包</h6><p>都存在@ini_set(“display_errors”, “0”);@set_time_limit(0)开头。并且存在base64等字符</p>
+<h6 id="响应包"><a href="#响应包" class="headerlink" title="响应包"></a>响应包</h6><p>格式为  随机数 结果  随机数</p>
+<h5 id="2-2-2使用base64编码器和解码器时"><a href="#2-2-2使用base64编码器和解码器时" class="headerlink" title="2.2.2使用base64编码器和解码器时"></a>2.2.2使用base64编码器和解码器时</h5><p>随机生成一个参数传入base64编码后的代码，密码参数的值是通过POST获取随机参数的值然后进行base64解码后使用eval执行</p>
+<p>响应包的结果返回格式为  随机数 编码后的结果  随机数</p>
+<h2 id="3-冰蝎"><a href="#3-冰蝎" class="headerlink" title="3.冰蝎"></a>3.冰蝎</h2><p><a target="_blank" rel="noopener" href="https://github.com/rebeyond/Behinder">https://github.com/rebeyond/Behinder</a></p>
+<h3 id="3-1静态3-0版本"><a href="#3-1静态3-0版本" class="headerlink" title="3.1静态3.0版本"></a>3.1静态3.0版本</h3><p>采用<strong>预共享密钥</strong>，密钥格式为md5(“admin”)[0:16], 所以在各种语言的webshell中都会存在16位数的连接密码，默认变量为k。</p>
+<p>在<strong>PHP</strong>中会判断是否开启openssl采用不同的加密算法，在代码中同样会存在eval或assert等字符特征</p>
+<p><img src="1654166631026-826eec4d-27b8-403e-9578-43cb196fb875.png" alt="img"></p>
+<p>在<strong>asp</strong>中会在for循环进行一段异或处理</p>
+<p><img src="1654166724540-92acf9ba-e141-47a6-9098-8ff14e0f4de4.png" alt="img"></p>
+<p>在<strong>jsp</strong>中则利用java的反射，所以会存在ClassLoader，getClass().getClassLoader()等字符特征</p>
+<p><img src="1654166739927-d16e2a1e-c412-4c59-86b8-d2edaebf3b44.png" alt="img"></p>
+<h3 id="3-2-2-0动态"><a href="#3-2-2-0动态" class="headerlink" title="3.2 2.0动态"></a>3.2 2.0动态</h3><p>2.0中采用<strong>协商密钥机制</strong>。第一阶段请求中返回包状态码为200，返回内容必定是16位的密钥</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Accept: text/html, image/gif, image/jpeg, *; q=.2, */*; q=.2</span><br></pre></td></tr></table></figure>
+
+<p><img src="1654166883514-3d9bdaa1-beb6-4c04-add0-d1f9d3787b7f.png" alt="img"></p>
+<p>建立连接后 所有请求 Cookie的格式都为: Cookie: PHPSESSID&#x3D;; path&#x3D;&#x2F;；</p>
+<p>useragent有十多种，若没有修改，每次发包会随机选择一个</p>
+<h3 id="3-3-3-0动态"><a href="#3-3-3-0动态" class="headerlink" title="3.3 3.0动态"></a>3.3 3.0动态</h3><p><strong>去除了动态密钥协商机制，采用预共享密钥，全程无明文交互，</strong>密钥格式为md5(“admin”)[0:16],但还是会存在一些特征</p>
+<p>在使用<strong>命令执行功能</strong>时</p>
+<p>请求包中</p>
+<p><code>1.content-length 为5740或5720</code>（可能会根据Java版本而改变）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2.Pragma: no-cache，Cache-Control: no-cache</span><br><span class="line">3.Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line">4.content-type: application/octet-stream</span><br><span class="line">5.默认内置 16 个 user-agent</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-3-3-11流量特征"><a href="#3-3-3-11流量特征" class="headerlink" title="3.3 3.11流量特征"></a>3.3 3.11流量特征</h3><p>1、header头顺序是颠倒的</p>
+<p>2、发送包是base64，返回包是字节数组，所以会乱码</p>
+<p>3、如果冰蝎密码不对，会出现两个连接，第一个是post 第二个是get </p>
+<ol start="4">
+<li>content-type为application&#x2F;octet-stream ，请求包中content-length 为5740或5720（可能会根据Java版本而改变)，每一个请求头中存在Pragma: no-cache，Cache-Control: no-cache</li>
+</ol>
+<p>5.异常User-Agent—- 出现WOW64等</p>
+<h2 id="4-哥斯拉"><a href="#4-哥斯拉" class="headerlink" title="4.哥斯拉"></a>4.哥斯拉</h2><p><a target="_blank" rel="noopener" href="https://github.com/BeichenDream/Godzilla">https://github.com/BeichenDream/Godzilla</a></p>
+<p>哥斯拉的webshell需要动态生成，可以根据需求选择各种不同的加密方式</p>
+<p>1.不修改User-Agent，User-Agent会类似于Java&#x2F;1.8.0_121（具体什么版本取决于JDK环境版本）</p>
+<p>2.在请求包的Cookie中有一个非常致命的特征，最后的分号，标准的HTTP请求中最后一个Cookie的值是不应该出现“;”的</p>
+<h3 id="4-1-静态特征"><a href="#4-1-静态特征" class="headerlink" title="4.1 静态特征"></a>4.1 静态特征</h3><p>选择<strong>默认脚本编码生成</strong>的情况下</p>
+<p><strong>jsp</strong>会出现xc,pass字符和Java反射（ClassLoader，getClass().getClassLoader()），base64加解码等特征</p>
+<p>php，asp则为普通的一句话木马</p>
+<h3 id="4-2-动态特征"><a href="#4-2-动态特征" class="headerlink" title="4.2 动态特征"></a>4.2 动态特征</h3><p>所有请求中<code>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</code></p>
+<p>所有响应中<code>Cache-Control: no-store, no-cache, must-revalidate,</code></p>
+<p>以上两个只能作为弱特征参考</p>
+<p>同时在所有请求中：</p>
+<ol>
+<li>Cookie中后面都存在<code>；</code>符号</li>
+<li>“pass&#x3D;”起始</li>
+<li>请求包较长 响应包为0</li>
+<li>一个tcp包里面有三个http</li>
+</ol>
+<p>整个响应包的结构体征为：md5前十六位+base64+md5后十六位</p>
+<h3 id="4-3-4-0-1中JAVA-AES-BASE64特征流量"><a href="#4-3-4-0-1中JAVA-AES-BASE64特征流量" class="headerlink" title="4.3 4.0.1中JAVA_AES_BASE64特征流量"></a>4.3 <strong>4.0.1中JAVA_AES_BASE64特征流量</strong></h3><p>发送包是密码&#x3D;bae64字符串的形式，返回包是类base64字符串的格式</p>
+<ol>
+<li>对称加密算法：JAVA_AES_BASE64是哥斯拉4.0.1使用的对称加密算法;因此可以根据哥斯拉4.0.1的流量中是否包含JAVA_AES_BASE64来判断是否为哥斯拉4.0.1攻击流量</li>
+<li>长度固定：哥斯拉4.0.1使用JAVA_AES_BASE64算法对数据进行加密后，加密后数据的长度是固定的因此，可以根据攻击流量的长度是否固定来判断是否为哥斯拉4.0.1攻击流量</li>
+<li>常见数据前缀：哥斯拉4.0.1加密的数据在明文数据前会添加特定的前缀;因此，可以根据攻击流量中是否包含常见的数据前缀来判断是否为哥斯拉4.0.1攻击流量。</li>
+</ol>
+<h2 id="5-CS"><a href="#5-CS" class="headerlink" title="5.CS"></a>5.CS</h2><p>1、http-beacon通信中，默认使用get方法向&#x2F;dpixel、&#x2F;__utm.gif、&#x2F;pixel.gif等地址发起请求，同时请求头存在cookie字段并且值为base64编码</p>
+<p>2、dns-beacon通信中，默认使用cdn.、www6.、api.、www.、post.为开头发起dns请求，并且查询结果伴随0.0.0.0、0.0.0.80、0.0.0.241等非常规IP</p>
+<p>3、心跳包间隔一定时间，均有通信，且流级上的上下行数据长度固定</p>
+<p>4、Cobalt Strike通常使用自定义的User-Agent字符串，例如Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) Cobalt Strike</p>
+<p>5、命令和控制流量：Cobalt Strike的HTTP请求中可能包含与C2服务器通信的命令和控制信息，这些信息在正常的Web请求中不会出现。</p>
+<h2 id="6-如何判断是struts2漏洞执行命令？"><a href="#6-如何判断是struts2漏洞执行命令？" class="headerlink" title="6.如何判断是struts2漏洞执行命令？"></a>6.<strong>如何判断是struts2漏洞执行命令？</strong></h2><ol>
+<li>在请求头中存在<strong>OGNL表达式</strong>，Struts2 命令执行的原理是通过 Ognl 表达式执行 java 代码，一般在url中会出现的攻击特征主要是:.<code>action?method</code>或者<code>?redirect:$ </code></li>
+</ol>
+<p>在conten-type中出现的攻击特征主要有:<code>%&#123;#context</code> 、在报文体中出现的攻击特征主要有:<code>#_memberAccess </code>等</p>
+<ol start="2">
+<li>判断请求中是否包含特定的 Struts2 关键字，如”method:”、”redirect:”等，这些关键字可能是用于执行命令的操作；</li>
+<li>检查请求中是否包含”Content-Type”头字段，并且值为<code>&quot;application/x-www-form-urlencoded&quot;</code>，这是 Struts2 框架默认的 Content-Type 值，用于处理 POST 请求；</li>
+<li>检查请求参数中是否包含OGNL表达式，如<code>&quot;$&#123;&#125;&quot;、&quot;%&#123;&#125;&quot;</code>等字符；</li>
+<li>检查请求是否包含一个名为”class”的参数，值为”java.lang.Runtime”，这个参数可以用于执行系统命令</li>
+</ol>
+<p>成功否</p>
+<p><img src="1688660062913-2f3197be-2f56-4f80-9199-dd4b422feae1.png" alt="img"></p>
+<p><strong>攻击成功否就是看是否返回对应的命令的结果</strong></p>
+<p><strong>.do和.action结尾的页面请求可以尝试struts2漏洞</strong></p>
+<p>可直接rce的共有30个,其中较为常见的:16、19、32、45、46</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">-S2-001:表单验证错误OGNL循环解析导致RCE。</span><br><span class="line">-S2-003:XWork Parameterinterceptors 绕过允许OGNL语句执行。</span><br><span class="line">-S2-005:XWork Parameterinterceptors 绕过导致RCE。</span><br><span class="line">-S2-007:当出现转换错误时,用户输入被评估为OGNL表达式。</span><br><span class="line">-S2-008:Struts2中的多个严重漏洞。</span><br><span class="line">-S2-009:Parameterinterceptor漏洞导致RCE。</span><br><span class="line">-S2-012:Showcase应用程序漏洞导致RCE。</span><br><span class="line">-S2-013:存在于URL和定位标记的includeParams属性导致RCE </span><br><span class="line">-S2-014:通过强制的URL和错标签参数包括引入导致RCE,会话访问和操纵和跨站脚本攻击。</span><br><span class="line">S2-015:由通配符匹配机制或OGNL表达的双重评价引入的漏洞导致RCE。</span><br><span class="line">-S2-016:通过操纵前缀为&quot;action:&quot;/redirect:&quot;/&quot;redirectAction:&quot;的参数引入的漏洞允许远程命令执行。</span><br><span class="line">-S2-018:ActionMapper机制支持特殊参数前缀动作的访问控制漏漏</span><br><span class="line">-S2-019:动态方法调用的默认开启和默认禁止。</span><br><span class="line">-S2-020:将Commons FileUpload升级1.3.1版(DoS)并添加&quot;class以排除Parametersinterceptor中的参数避免ClassLoader操</span><br><span class="line">作。</span><br><span class="line">-S2-021:改进了Parametersinterceptor和Cookielnterceptor中挂除的参数以避免</span><br><span class="line">ClassLoader操作。</span><br><span class="line">-S2-022:扩展Cookielnterceptor中排除的参数以避免操纵Struts的内部结构。</span><br><span class="line">-S2-026:特殊的顶部对象可用于访问Struts的内部结构。</span><br><span class="line">S2-029:强制双重OGNL评估求值,当对标签属性中的原原始用户输入进行评估求值时,可能会导致RCE。</span><br><span class="line">-S2-032:启用动态方法调用时,可以通过method:前缀导致RCE。</span><br><span class="line">S2-033:启用动态方法调用时,使用REST插件则运算符!可执行远程代码。</span><br><span class="line">-S2-036:强制双重OGNL评估求值,当对标签属性中的原始用户输入进行评估求值时,可能会导致RCE。</span><br><span class="line">(S2-029的延申)</span><br><span class="line">-S2-037:使用REST插件时可以执行远程代码执行。</span><br><span class="line">-S2-045:基于Jakarta Multipart解析器执行文件上传时可能的RRCE</span><br><span class="line">-S2-046:基于Jakarta Multipart解析器执行文件上传时可能的RCE。(S2-045的异构)</span><br><span class="line">-S2-048:Struts 2.3.x系列中Struts 1插件示例中的Struts Showcase应用程序中可能存在的RCE。</span><br><span class="line">-S2-052:使用带有XStream处理程序的Struts REST插件来处理XML负载时可能存在的RCE。</span><br><span class="line">-S2-053:在Freemarker标签中使用无意表达式而不是字符串文字时可能导致RCE。</span><br><span class="line">-S2-055:JacksonJSON库中的RCE漏洞</span><br><span class="line">-S2-057:alwaysSelectFullNamespace的RCE漏洞触发条件:定义XML配置时namespace值未设置且上层动作配置(Action</span><br><span class="line">Configuration)中未设置或用通配符namespace;url标签未设置value和action值且上层动作未设置或用通配符namespace。</span><br><span class="line">-S2-059:强制双重OGNL评估,当对标签属性中的原始用户输入进行评估时,可能会导致远程代码执行。</span><br><span class="line">-S2-061:强制双重OGNL评估,当对标签属性中的原始用户输入进行评估时,可能会导致远程代码执行。(S2-059的延申)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="7-Log4j2-远程代码执行漏洞原理？"><a href="#7-Log4j2-远程代码执行漏洞原理？" class="headerlink" title="7.Log4j2 远程代码执行漏洞原理？"></a>7.<strong>Log4j2 远程代码执行漏洞原理？</strong></h2><p>1、框架中存在一个名为 JNDI Lookup 的功能，它允许通过配置文件中的 JNDI 名称引用外部资源</p>
+<p>2、攻击者构造一个特殊的日志消息，其中包含恶意的 JNDI 名称，并通过网络发送给受影响的应用程序。</p>
+<p>3、当应用程序使用 Log4j2 框架解析日志消息时，它会尝试查找和引用该 JNDI 名称。</p>
+<p>4、如果恶意的 JNDI 名称指向一个恶意的远程资源，例如恶意的 LDAP 服务器或 RMI 服务，攻击者可以控制该远程资源的内容和行为。</p>
+<p>5、攻击者可以在恶意的远程资源中注入恶意代码，并在目标系统上执行任意命令或获取敏感信息。</p>
+<p><strong>如何判断成功否？</strong></p>
+<p>1、dnslog类：查看是否存在源ip与dnslog的外联日志记录</p>
+<p>2、命令执行攻击</p>
+<p>2.1 有回显：响应体中存在命令执行结果</p>
+<p>2.2无回显 ：存在源ip与ldap服务ip的外联日志记录</p>
+<h2 id="8-安全设备发现Linux挖矿告警，上机执行ps，top命令未发现挖矿及恶意进程，怀疑linux中ps，top命令被替换，动态链接库被劫持，请问应该如何处理？"><a href="#8-安全设备发现Linux挖矿告警，上机执行ps，top命令未发现挖矿及恶意进程，怀疑linux中ps，top命令被替换，动态链接库被劫持，请问应该如何处理？" class="headerlink" title="8.安全设备发现Linux挖矿告警，上机执行ps，top命令未发现挖矿及恶意进程，怀疑linux中ps，top命令被替换，动态链接库被劫持，请问应该如何处理？"></a><strong>8.安全设备发现Linux挖矿告警，上机执行ps，top命令未发现挖矿及恶意进程，怀疑</strong>linux中ps，top命令被替换，动态链接库被劫持，请问应该如何处理？</h2><h3 id="命令被替换"><a href="#命令被替换" class="headerlink" title="命令被替换"></a>命令被替换</h3><p>1、使用cat &#x2F;etc&#x2F;ld.so.preload命令查看动态链接库文件是否加载有so文件，提取加载的so文件上传至威胁情报平台，判断是否为恶意so文件</p>
+<p>2、清除so文件，使用ldconfig命令重新加载动态链接库，执行ps，top命令查看是否可以发现挖矿进程信息</p>
+<ol start="3">
+<li>确认ps和top命令是否被替换：可以使用命令”which ps”和”which top”查看这两个命令的路径是否为系统默认路径”&#x2F;bin&#x2F;ps”和”&#x2F;usr&#x2F;bin&#x2F;top”，如果不是则说明被替换。也可以通过比较ps和top命令的md5值来判断是否一致。</li>
+</ol>
+<h3 id="动态链接库是否被劫持"><a href="#动态链接库是否被劫持" class="headerlink" title="动态链接库是否被劫持"></a>动态链接库是否被劫持</h3><p>确认动态链接库是否被劫持：可以使用命令”ldd &#x2F;bin&#x2F;ps”和”ldd &#x2F;usr&#x2F;bin&#x2F;top”查看这两个命令依赖的动态链接库是否正常，如果有动态链接库被替换，则会发现其中一些动态链接库路径不对</p>
+<h3 id="恢复被替换的命令和动态链接库"><a href="#恢复被替换的命令和动态链接库" class="headerlink" title="恢复被替换的命令和动态链接库"></a>恢复被替换的命令和动态链接库</h3><p>如果确认被替换，可以从系统安装介质或官方网站上下载对应版本的ps和top命令和动态链接库，替换掉被替换的文件即可。</p>
+<p>替换命令和动态链接库只是暂时的措施，需要进一步排查系统安全状况，比如查杀恶意程序、加强访问控制、更新系统补丁等，以防止类似问题再次发生</p>
+<p>6<strong>借助工具busybox</strong></p>
+<h2 id="9-如何研判JBOSS-反序列化漏洞攻击成功？"><a href="#9-如何研判JBOSS-反序列化漏洞攻击成功？" class="headerlink" title="9.如何研判JBOSS 反序列化漏洞攻击成功？"></a>9.如何研判JBOSS 反序列化漏洞攻击成功？</h2><p>1.在访问JBOSS漏洞页面&#x2F;invoker&#x2F;readonly后，返回值为500</p>
+<p>2.请求体有llections.map.LazyMap、keyvalue.TiedMapEntry攻击链特征并且有明显的命令执行行为比如whoami</p>
+<p>3.在返回500 堆栈报错页面内容中包含了系统返回内容 比如系统用户：root</p>
+<h2 id="10-如何研判Fastjson反序列化漏洞攻击成功？"><a href="#10-如何研判Fastjson反序列化漏洞攻击成功？" class="headerlink" title="10.如何研判Fastjson反序列化漏洞攻击成功？"></a>10.如何研判Fastjson反序列化漏洞攻击成功？</h2><p>原理也是jdni注入 利用就是构造一个json字符，用**@type指定一个类库**</p>
+<p>Fastjson反序列化的Gadget需要无参默认构造方法或者注解指定构造方法并添加相应参数。使用Feature.SupportNonPublicField才能打开非公有属性的反序列化处理,如果开启了autotype功能,<strong>引用@type可以指定反序列化任意类调用其set,get,is方法,并且由于反序列化的特性,我们可以通过目标类的set方法自由的设置类的属性值。如果类中使用了json.parse()反序列化了恶意数据就会造成任意代码执行。</strong></p>
+<p><strong>小于等于1.2.24:</strong></p>
+<p>直接抓包发送@type格式的恶意json数据。</p>
+<p><strong>小于等于1.2.45</strong></p>
+<p>默认不开启autotype功能,使用java.lang.class指定类放入缓存,fastjon调用缓存中的类就可以了。</p>
+<p>流量特征:jsonautotype</p>
+<p>1.请求头：<code>method: POST</code> <code>content_type: application/json</code></p>
+<p>2.请求体：<code>data:com.sun.rowset.JdbcRowSetImpl,dataSourceName</code>,<code>@type</code></p>
+<p>3.请求体: 包含攻击者C2服务器地址</p>
+<p>4.状态码为：400  也可能是500</p>
+<h2 id="11-反序列化"><a href="#11-反序列化" class="headerlink" title="11.反序列化"></a>11.反序列化</h2><h3 id="JAVA反序列化"><a href="#JAVA反序列化" class="headerlink" title="JAVA反序列化"></a>JAVA反序列化</h3><p>可以将java对象解析为json(字节序列),也可以将json反序列化为java对象</p>
+<p>该类必须实现java.io.Serializable接口</p>
+<p>该类的所有属性必须是可序列化的。如果有一个属性不是可序列化的,则该属性必须注明是短暂的。</p>
+<h3 id="PHP反序列化"><a href="#PHP反序列化" class="headerlink" title="PHP反序列化"></a>PHP反序列化</h3><p>流量特征:</p>
+<p>将文本形式的字节序列反序列化为变量和值</p>
+<p>(1)TCP:必有aced0005,这个16进制流基本上也意味者java反序列化的开始;</p>
+<p>(2)HTTP:必有rOOAB,其实这就是aced0005的base64编码码的结果;</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="http://example.com">senu11</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/10/15/%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81%E5%92%8C%E6%94%BB%E5%87%BB%E5%88%A4%E6%96%AD/">http://example.com/2020/10/15/流量特征和攻击判断/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">senu11</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="/img/1.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/10/14/%E5%A5%87%E6%8A%80%E6%B7%AB%E5%B7%A7/" title="奇技淫巧"><img class="cover" src="/img/1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">奇技淫巧</div></div></a></div><div class="next-post pull-right"><a href="/2020/10/15/%E6%80%8E%E6%A0%B7%E6%B8%85%E9%99%A4svchost.exe%E7%97%85%E6%AF%92/" title="清楚svchost.exe病毒"><img class="cover" src="/img/1.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">清楚svchost.exe病毒</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%8F%9C%E5%88%80"><span class="toc-number">1.</span> <span class="toc-text">1.菜刀</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1%E9%9D%99%E6%80%81%E7%89%B9%E5%BE%81"><span class="toc-number">1.1.</span> <span class="toc-text">1.1静态特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2%E5%8A%A8%E6%80%81%E7%89%B9%E5%BE%81"><span class="toc-number">1.2.</span> <span class="toc-text">1.2动态特征</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-1%E8%AF%B7%E6%B1%82%E5%8C%85"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1请求包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2-2%E8%BF%94%E5%9B%9E%E5%8C%85"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2返回包</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%9A%81%E5%89%91"><span class="toc-number">2.</span> <span class="toc-text">2.蚁剑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1%E9%9D%99%E6%80%81%E7%89%B9%E5%BE%81"><span class="toc-number">2.1.</span> <span class="toc-text">2.1静态特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2%E5%8A%A8%E6%80%81%E7%89%B9%E5%BE%81"><span class="toc-number">2.2.</span> <span class="toc-text">2.2动态特征</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-1%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81%E8%BF%9E%E6%8E%A5%E6%97%B6"><span class="toc-number">2.2.0.1.</span> <span class="toc-text">2.2.1默认编码连接时</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E5%8C%85"><span class="toc-number">2.2.0.1.1.</span> <span class="toc-text">请求包</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%93%8D%E5%BA%94%E5%8C%85"><span class="toc-number">2.2.0.1.2.</span> <span class="toc-text">响应包</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-2%E4%BD%BF%E7%94%A8base64%E7%BC%96%E7%A0%81%E5%99%A8%E5%92%8C%E8%A7%A3%E7%A0%81%E5%99%A8%E6%97%B6"><span class="toc-number">2.2.0.2.</span> <span class="toc-text">2.2.2使用base64编码器和解码器时</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%86%B0%E8%9D%8E"><span class="toc-number">3.</span> <span class="toc-text">3.冰蝎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1%E9%9D%99%E6%80%813-0%E7%89%88%E6%9C%AC"><span class="toc-number">3.1.</span> <span class="toc-text">3.1静态3.0版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-0%E5%8A%A8%E6%80%81"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 2.0动态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-0%E5%8A%A8%E6%80%81"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 3.0动态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-11%E6%B5%81%E9%87%8F%E7%89%B9%E5%BE%81"><span class="toc-number">3.4.</span> <span class="toc-text">3.3 3.11流量特征</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%93%A5%E6%96%AF%E6%8B%89"><span class="toc-number">4.</span> <span class="toc-text">4.哥斯拉</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E9%9D%99%E6%80%81%E7%89%B9%E5%BE%81"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 静态特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%8A%A8%E6%80%81%E7%89%B9%E5%BE%81"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 动态特征</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-4-0-1%E4%B8%ADJAVA-AES-BASE64%E7%89%B9%E5%BE%81%E6%B5%81%E9%87%8F"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 4.0.1中JAVA_AES_BASE64特征流量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-CS"><span class="toc-number">5.</span> <span class="toc-text">5.CS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%98%AFstruts2%E6%BC%8F%E6%B4%9E%E6%89%A7%E8%A1%8C%E5%91%BD%E4%BB%A4%EF%BC%9F"><span class="toc-number">6.</span> <span class="toc-text">6.如何判断是struts2漏洞执行命令？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Log4j2-%E8%BF%9C%E7%A8%8B%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">7.Log4j2 远程代码执行漏洞原理？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%AE%89%E5%85%A8%E8%AE%BE%E5%A4%87%E5%8F%91%E7%8E%B0Linux%E6%8C%96%E7%9F%BF%E5%91%8A%E8%AD%A6%EF%BC%8C%E4%B8%8A%E6%9C%BA%E6%89%A7%E8%A1%8Cps%EF%BC%8Ctop%E5%91%BD%E4%BB%A4%E6%9C%AA%E5%8F%91%E7%8E%B0%E6%8C%96%E7%9F%BF%E5%8F%8A%E6%81%B6%E6%84%8F%E8%BF%9B%E7%A8%8B%EF%BC%8C%E6%80%80%E7%96%91linux%E4%B8%ADps%EF%BC%8Ctop%E5%91%BD%E4%BB%A4%E8%A2%AB%E6%9B%BF%E6%8D%A2%EF%BC%8C%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93%E8%A2%AB%E5%8A%AB%E6%8C%81%EF%BC%8C%E8%AF%B7%E9%97%AE%E5%BA%94%E8%AF%A5%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%EF%BC%9F"><span class="toc-number">8.</span> <span class="toc-text">8.安全设备发现Linux挖矿告警，上机执行ps，top命令未发现挖矿及恶意进程，怀疑linux中ps，top命令被替换，动态链接库被劫持，请问应该如何处理？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E8%A2%AB%E6%9B%BF%E6%8D%A2"><span class="toc-number">8.1.</span> <span class="toc-text">命令被替换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93%E6%98%AF%E5%90%A6%E8%A2%AB%E5%8A%AB%E6%8C%81"><span class="toc-number">8.2.</span> <span class="toc-text">动态链接库是否被劫持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%81%A2%E5%A4%8D%E8%A2%AB%E6%9B%BF%E6%8D%A2%E7%9A%84%E5%91%BD%E4%BB%A4%E5%92%8C%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93"><span class="toc-number">8.3.</span> <span class="toc-text">恢复被替换的命令和动态链接库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E5%A6%82%E4%BD%95%E7%A0%94%E5%88%A4JBOSS-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E6%94%BB%E5%87%BB%E6%88%90%E5%8A%9F%EF%BC%9F"><span class="toc-number">9.</span> <span class="toc-text">9.如何研判JBOSS 反序列化漏洞攻击成功？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%A6%82%E4%BD%95%E7%A0%94%E5%88%A4Fastjson%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E6%94%BB%E5%87%BB%E6%88%90%E5%8A%9F%EF%BC%9F"><span class="toc-number">10.</span> <span class="toc-text">10.如何研判Fastjson反序列化漏洞攻击成功？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">11.</span> <span class="toc-text">11.反序列化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JAVA%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">11.1.</span> <span class="toc-text">JAVA反序列化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">11.2.</span> <span class="toc-text">PHP反序列化</span></a></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background: #FFFFFF"><div id="footer-wrap"></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">簡</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
