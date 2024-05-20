@@ -153,24 +153,24 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">133</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/1.png')"><nav id="nav"><span id="blog-info"><a href="/" title="senu11"><span class="site-name">senu11</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">kerberos</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-10T08:24:00.000Z" title="发表于 2020-10-10 16:24:00">2020-10-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-17T09:37:00.661Z" title="更新于 2024-05-17 17:37:00">2024-05-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/">内网安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="kerberos"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>本文介绍kerberos的相关知识以及利用攻击方法</p>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">133</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/1.png')"><nav id="nav"><span id="blog-info"><a href="/" title="senu11"><span class="site-name">senu11</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">kerberos</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2020-10-10T08:24:00.000Z" title="发表于 2020-10-10 16:24:00">2020-10-10</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/">内网安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="kerberos"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>本文介绍kerberos的相关知识以及利用攻击方法</p>
 <span id="more"></span>
 <p>攻击机：kali：192.168.43.30</p>
 <p>客户机DC：win2012：192.168.8.211</p>
 <p>客户机：win7： 182.168.8.57</p>
-<h2 id="1-kerberos介绍"><a href="#1-kerberos介绍" class="headerlink" title="1.kerberos介绍"></a>1.kerberos介绍</h2><p>在古希腊神话中Kerberos指的是：有着一只三头犬守护在地狱之门外,禁止任何人类闯入地狱之中。而现实中的Kerberos是一种网络身份验证协议,旨在通过密钥加密技术为客户端&#x2F;服务器应用程序提供身份验证,主要用在域环境下的身份验证。</p>
-<p>Kerberos是一种由MIT （麻省理工大学）提出的一种网络身份验证协议。它旨在通过使用密钥加密技术为客户端&#x2F;服务器应用程序提供强身份验证。</p>
-<p>Kerberos是一种网络认证协议，其设计目标是通过密钥系统为 客户机&#x2F;服务器应用程序提供强大的认证服务。该认证过程的实现不依赖于主机操作系统的认证，无需基于主机地址的信任，不要求网络上所有主机的物理安全，并假定网络上传送的数据包可以被任意地读取、修改和插入数据。在以上情况下，Kerberos作为一种可信任的第三方认证服务，是通过传统的密码技术(如:共享密钥)执行认证服务的。</p>
+<h2 id="1-kerberos介绍"><a href="#1-kerberos介绍" class="headerlink" title="1.kerberos介绍"></a>1.kerberos介绍</h2><p>在古希腊神话中Kerberos指的是：有着一只三头犬守护在地狱之门外,禁止任何人类闯入地狱之中。而现实中的Kerberos是一种网络身份验证协议,旨在通过密钥加密技术为客户端/服务器应用程序提供身份验证,主要用在域环境下的身份验证。</p>
+<p>Kerberos是一种由MIT （麻省理工大学）提出的一种网络身份验证协议。它旨在通过使用密钥加密技术为客户端/服务器应用程序提供强身份验证。</p>
+<p>Kerberos是一种网络认证协议，其设计目标是通过密钥系统为 客户机/服务器应用程序提供强大的认证服务。该认证过程的实现不依赖于主机操作系统的认证，无需基于主机地址的信任，不要求网络上所有主机的物理安全，并假定网络上传送的数据包可以被任意地读取、修改和插入数据。在以上情况下，Kerberos作为一种可信任的第三方认证服务，是通过传统的密码技术(如:共享密钥)执行认证服务的。</p>
 <p><img src="image-20210202131840081.png" alt="image-20210202131840081"></p>
 <h3 id="1-域认证所参与的角色"><a href="#1-域认证所参与的角色" class="headerlink" title="1.域认证所参与的角色:"></a>1.域认证所参与的角色:</h3><ul>
 <li>访问服务的client</li>
 <li>提供服务的server</li>
-<li>KDC(Key Distribution Center) &#x3D; DC(Domain Controller)密钥分发中心，一般为域控制器</li>
+<li>KDC(Key Distribution Center) = DC(Domain Controller)密钥分发中心，一般为域控制器 </li>
 </ul>
 <p>票据(Ticket ):是网络对象互相访问的凭证。TGT ( Ticket Granting Ticket ):入场券，通过入场券能够获得票据，是一种临时凭证的存在。<br>KDC负责管理票据、认证票据、分发票据，但是KDC不是一个独立的服务，它由以下服务组成:</p>
 <ul>
 <li>Authentication Service:为client生成TGT的服务，简称AS</li>
-<li>Ticket Granting Service: 为client生成某个服务的ticket，简称TGS。</li>
+<li>Ticket Granting Service: 为client生成某个服务的ticket，简称TGS。 </li>
 </ul>
 <p>另外还需要介绍一个类似于本机SAM的一个数据库:AD，全称叫account database，存储所有client的白名单，只有存在于白名单的client才能顺利申请到TGT。</p>
 <p><img src="image-20210202014237001.png" alt="image-20210202014237001"></p>
@@ -191,38 +191,48 @@
 <li><p>域内所有网络对象的凭证都在AD中保存.。</p>
 </li>
 <li><p>KDC中某个用户指的是krbtgt</p>
-<p><strong>具体流程:</strong></p>
-<p>KRB_AS_REQ<br>client-&gt;AS:发送Authenticator1(Client密码加密TimeStamp)<br>第一步client 先向KDC的AS 发送Authenticator1，内容为通过client密码 Hash加密的时间戳、ClientID、网络地址、加密类型等内容。</p>
 </li>
 </ul>
 </li>
 </ul>
-<p><img src="image-20210202015819837.png" alt="image-20210202015819837"></p>
-<p>​				KRB_AS_REP<br>​				AS-&gt; Client:发送 client密码加密的sessionkey-as和票据TGT(KRBTGT HASH加密的sessionkey-as和TimeStamp)<br>​				在KDC中存储了域中所有用户的密码HASH，当AS接收到Client的请求之后会根据KDC中存储的密码来解密，解密成功并且验证				信息。验证成功后返回给client 由 client密码HASH加密的sessionkey-as 和TGT (由KRBTGT HASH加密的sessionkey-as和Timestamp等信息)。<br>​				其中，TGT的到期时间为8小时，如果超过了8小时，还需要重新申请TGT，不能之间进入下一步获取Ticket. </p>
+<pre><code>**具体流程:**
+
+KRB_AS_REQ
+client-&gt;AS:发送Authenticator1(Client密码加密TimeStamp)
+第一步client 先向KDC的AS 发送Authenticator1，内容为通过client密码 Hash加密的时间戳、ClientID、网络地址、加密类型等内容。
+</code></pre><p><img src="image-20210202015819837.png" alt="image-20210202015819837"></p>
+<p>​                KRB_AS_REP<br>​                AS-&gt; Client:发送 client密码加密的sessionkey-as和票据TGT(KRBTGT HASH加密的sessionkey-as和TimeStamp)<br>​                在KDC中存储了域中所有用户的密码HASH，当AS接收到Client的请求之后会根据KDC中存储的密码来解密，解密成功并且验证                信息。验证成功后返回给client 由 client密码HASH加密的sessionkey-as 和TGT (由KRBTGT HASH加密的sessionkey-as和Timestamp等信息)。<br>​                其中，TGT的到期时间为8小时，如果超过了8小时，还需要重新申请TGT，不能之间进入下一步获取Ticket. </p>
 <ul>
 <li><strong>第二步:Client 与 TGS 的交互,Client使用TGT从KDC获得基于某个Server的Ticket</strong><br>客户端需要提供TGT与第一步中使用自己NTLM Hash解密出来的Session Key加密的客户端信息跟时间戳。如果假设这个数据被中间人窃取到，也无法在段时间内破解，因为KDC会校验时间戳。<br>KDC接到TGT与其他内容后，会首先解密TGT，只有KDC可以解密TGT，从TGT中提取到Session Key，再使用Session Key解密其他内容，解密出来的内容同TGT中的信息进行校验来确认客户端是否受信。<br>验证通过后，就会生成一个新的Session Key，我们称之为Server Session Key，这个Server Session Key主要用于和服务器进行通信。同时还会生成一个Ticket，也就是最后的票据了<br>Server Hash:这个Hash是在AD中服务器计算机的NTLM Hash。</li>
 </ul>
-<p>​	<strong>具体流程:</strong><br>  Client -&gt;TGS 发送 Authenticator2(sessionkey-as加密Timestamp)和票据TGT(KRBTGTHASH加密的sessionkey-as和Timestamp)<br>  Client接收到了加密后的Sessionkey-as 和TGT之后，用自身密码解密得到sSessionkey-as,TGT是由KDC 密码加密，Client 无法解密。这时Client再用Sessionkey-as加密 TimeStamp和TGT一起发送给KDC 中的TGS ( TicketGranting Server )票据授权服务器换取能够访问Server的票据。</p>
+<p>​    <strong>具体流程:</strong><br>  Client -&gt;TGS 发送 Authenticator2(sessionkey-as加密Timestamp)和票据TGT(KRBTGTHASH加密的sessionkey-as和Timestamp)<br>  Client接收到了加密后的Sessionkey-as 和TGT之后，用自身密码解密得到sSessionkey-as,TGT是由KDC 密码加密，Client 无法解密。这时Client再用Sessionkey-as加密 TimeStamp和TGT一起发送给KDC 中的TGS ( TicketGranting Server )票据授权服务器换取能够访问Server的票据。</p>
 <p><img src="image-20210202021236912.png" alt="image-20210202021236912"></p>
-<p>​	TGS-&gt; Client 发送密文1(sessionkey-as 加密sessionkey-tgs)和票据ST(Server密码 HASH加密sessionkey-tgs)</p>
-<p>​	TGS 收到Client 发送过来的TGT和Sessionkey-as 加密的Timestamp 之后，首先会检查自身是否存在Client所请求的服务。如果服务存在，则用KRBTGT密码解密TGT。一般情况下TGS 会检查TGT中的时间戳查看TGT是否过期，且原始地址是否和TGT中保存的地址相同。验证成功之后将用sessionkey-as加密的sessionkey-tgs 和Server密码 HASH加密的Sessionkey-tgs 发送给client。</p>
+<p>​    TGS-&gt; Client 发送密文1(sessionkey-as 加密sessionkey-tgs)和票据ST(Server密码 HASH加密sessionkey-tgs)</p>
+<p>​    TGS 收到Client 发送过来的TGT和Sessionkey-as 加密的Timestamp 之后，首先会检查自身是否存在Client所请求的服务。如果服务存在，则用KRBTGT密码解密TGT。一般情况下TGS 会检查TGT中的时间戳查看TGT是否过期，且原始地址是否和TGT中保存的地址相同。验证成功之后将用sessionkey-as加密的sessionkey-tgs 和Server密码 HASH加密的Sessionkey-tgs 发送给client。</p>
 <ul>
-<li><p><strong>第三步:Client 与 Server 的交互–双向验证</strong><br>客户端向服务器请求，需要提供Ticket，Server Session Key加密的客户端信息与时间戳。 </p>
+<li><p><strong>第三步:Client 与 Server 的交互—双向验证</strong><br>客户端向服务器请求，需要提供Ticket，Server Session Key加密的客户端信息与时间戳。 </p>
 <ul>
 <li><p>Ticket客户端无法解密</p>
 </li>
 <li><p>服务器端通过解密Ticket解密Server Session Key(Client info + Timestamp)。</p>
 </li>
 <li><p>比较时间长度</p>
-<p><strong>具体流程:</strong></p>
-<p>client -&gt;Server 发送Authenticator3(sessionkey-tgs 加密TimeStamp)和票据ST(Server密码HASH加密sessionkey-tgs)<br>client 收到sessionkey-as 加密的sessionkey-tgs 和Server密码 HAsA加密的sessionkey-tgs 之后用sessionkey-as解密得到sessionkey-tgs，然后把sessionkey-tgs 加密的<br>Timestamp和 ST一起发送给Server.</p>
-<p><img src="image-20210202021708277.png" alt="image-20210202021708277"></p>
-<p>Server-&gt; Client<br>server通过自己的密码解密ST，得到 sessionkey-tgs,再用sessionkey-tgs解密Authenticator3得到Timestamp，验证正确返回验证成功。<br>校验通过后，认证成功，该票据会一直存在客户端内存中。</p>
 </li>
 </ul>
 </li>
 </ul>
-<h3 id="4-PAC"><a href="#4-PAC" class="headerlink" title="4.PAC"></a>4.PAC</h3><p>在Kerberos最初设计的几个流程里说明了如何证明client 是client而不是由其他人来冒充的，但并没有声明client有没有访问Server服务的权限，因为在域中不同权限的用户能够访问的资源是有区别的。<br>所以微软为了解决这个问题在实现 Kerberos 时加入了PAC的概念，PAC的全称是<strong>PrivilegeAttribute Certificate(特权属性证书)<strong>。可以理解为火车有一等座，也有二等座，而</strong>PAC就是为了区别不同权限的一种方式。</strong></p>
+<pre><code>**具体流程:**
+
+client -&gt;Server 发送Authenticator3(sessionkey-tgs 加密TimeStamp)和票据ST(Server密码HASH加密sessionkey-tgs)
+client 收到sessionkey-as 加密的sessionkey-tgs 和Server密码 HAsA加密的sessionkey-tgs 之后用sessionkey-as解密得到sessionkey-tgs，然后把sessionkey-tgs 加密的
+Timestamp和 ST一起发送给Server.
+
+![image-20210202021708277](kerberos/image-20210202021708277.png)
+
+Server-&gt; Client
+server通过自己的密码解密ST，得到 sessionkey-tgs,再用sessionkey-tgs解密Authenticator3得到Timestamp，验证正确返回验证成功。
+校验通过后，认证成功，该票据会一直存在客户端内存中。 
+</code></pre><h3 id="4-PAC"><a href="#4-PAC" class="headerlink" title="4.PAC"></a>4.PAC</h3><p>在Kerberos最初设计的几个流程里说明了如何证明client 是client而不是由其他人来冒充的，但并没有声明client有没有访问Server服务的权限，因为在域中不同权限的用户能够访问的资源是有区别的。<br>所以微软为了解决这个问题在实现 Kerberos 时加入了PAC的概念，PAC的全称是<strong>PrivilegeAttribute Certificate(特权属性证书)</strong>。可以理解为火车有一等座，也有二等座，而<strong>PAC就是为了区别不同权限的一种方式。</strong></p>
 <h4 id="1-PAC的实现"><a href="#1-PAC的实现" class="headerlink" title="(1)PAC的实现"></a>(1)PAC的实现</h4><p>当用户与KDC之间完成了认证过程之后，Client需要访问Server所提供的某项服务时，Server为了判断用户是否具有合法的权限需要将client 的 User SID等信息传递给KDC,KDC通过SID判断用户的用户组信息，用户权限等，进而将结果返回给Server，Server再将此信息与用户所索取的资源的ACL进行比较，最后决定是否给用户提供相应的服务。<br>PAC会在 KRB_AS_REP中AS 放在TGT里加密发送给Client，然后由Client转发给TGS来验证Client所请求的服务。<br>在PAC中包含有两个数字签名PAC_SERVER_CHECKSuM和PAC_PRIVSVR_CHECKSUM，这两个数字签名分别由Server端密码HASH和KDC的密码HASH加密。<br>同时TGS解密之后验证签名是否正确，然后再重新构造新的PAC放在ST里返回给客户端，客户端将ST发送给服务端进行验证。</p>
 <h4 id="2-Server-与-KDC"><a href="#2-Server-与-KDC" class="headerlink" title="(2)Server 与 KDC"></a>(2)Server 与 KDC</h4><p>PAC可以理解为一串校验信息，为了防止被伪造和串改，原则上是存放在TGT里，并且TGT由KDC hash加密。<strong>同时尾部会有两个数字签名，分别由KDC密码和server密码加密，防止数字签名内容被篡改</strong></p>
 <p><img src="image-20210202022906946.png" alt="image-20210202022906946"></p>
@@ -234,7 +244,6 @@
 <p>当一个服务的权限为Local System或Network Service，则SPN注册在机器帐户(Computers)下</p>
 <p>当一个服务的权限为一个域用户，则SPN注册在域用户帐户(Users)下</p>
 <h4 id="2-SPN格式"><a href="#2-SPN格式" class="headerlink" title="2.SPN格式"></a>2.SPN格式</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">servicelass/host:port/servicename</span><br><span class="line"># serviceclass可以理解为服务的名称，常见的有www, ldap, SMTP, DNSHOST等</span><br><span class="line"># host有两种形式，FQDN和NetBIOS名，例如server01.test.com和server01</span><br><span class="line"># 如果服务运行在默认端口上，则端口号(port)可以省略</span><br></pre></td></tr></table></figure>
-
 <p><img src="image-20210202023344004.png" alt="image-20210202023344004"></p>
 <h4 id="3-查询SPN"><a href="#3-查询SPN" class="headerlink" title="3.查询SPN"></a>3.查询SPN</h4><p>对域控制器发起LDAP查询，这是正常kerberos票据行为的一部分，因此查询SPN的操作很难被检测<br>1、使用SetSPN<br>Win7和Windows Server2008自带的工具</p>
 <p>查看当前域内的所有SPN：<code>setspn.exe -q */*</code></p>

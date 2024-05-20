@@ -1,9 +1,9 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>网页中间件相关基础知识 | senu11</title><meta name="author" content="senu11"><meta name="copyright" content="senu11"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.IP访问和域名访问区别IP访问：直接访问至网站根目录 域名访问：访问到中间件设置的网站目录 2.常见文件后缀解析对应安全例如    扩展名 可执行文件路径 动作    .asp C:\Windows\System32\inetsrv\asp.dll  GET HEAD… GET HEAD…   那么在访问后缀为.asp的文件路径时，网站将会解析为asp文件，即只要文件路径指向C:\Windo">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>网页中间件相关基础知识 | senu11</title><meta name="author" content="senu11"><meta name="copyright" content="senu11"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="1.IP访问和域名访问区别IP访问：直接访问至网站根目录 域名访问：访问到中间件设置的网站目录 2.常见文件后缀解析对应安全例如     扩展名 可执行文件路径 动作     .asp C:\Windows\System32\inetsrv\asp.dll  GET HEAD… GET HEAD…     那么在访问后缀为.asp的文件路径时，网站将会解析为asp文件，即只要文件路径指向C:\W">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网页中间件相关基础知识">
 <meta property="og:url" content="http://example.com/2020/06/17/%E7%BD%91%E7%AB%99%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
 <meta property="og:site_name" content="senu11">
-<meta property="og:description" content="1.IP访问和域名访问区别IP访问：直接访问至网站根目录 域名访问：访问到中间件设置的网站目录 2.常见文件后缀解析对应安全例如    扩展名 可执行文件路径 动作    .asp C:\Windows\System32\inetsrv\asp.dll  GET HEAD… GET HEAD…   那么在访问后缀为.asp的文件路径时，网站将会解析为asp文件，即只要文件路径指向C:\Windo">
+<meta property="og:description" content="1.IP访问和域名访问区别IP访问：直接访问至网站根目录 域名访问：访问到中间件设置的网站目录 2.常见文件后缀解析对应安全例如     扩展名 可执行文件路径 动作     .asp C:\Windows\System32\inetsrv\asp.dll  GET HEAD… GET HEAD…     那么在访问后缀为.asp的文件路径时，网站将会解析为asp文件，即只要文件路径指向C:\W">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/1.png">
 <meta property="article:published_time" content="2020-06-16T16:00:00.000Z">
@@ -152,24 +152,28 @@
         }
       }
       detectApple()
-    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">133</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/1.png')"><nav id="nav"><span id="blog-info"><a href="/" title="senu11"><span class="site-name">senu11</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">网页中间件相关基础知识</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-06-16T16:00:00.000Z" title="发表于 2020-06-17 00:00:00">2020-06-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-05-18T19:41:43.247Z" title="更新于 2024-05-19 03:41:43">2024-05-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">623</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="网页中间件相关基础知识"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">133</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/1.png')"><nav id="nav"><span id="blog-info"><a href="/" title="senu11"><span class="site-name">senu11</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">网页中间件相关基础知识</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2020-06-16T16:00:00.000Z" title="发表于 2020-06-17 00:00:00">2020-06-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">617</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>2分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="网页中间件相关基础知识"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><hr>
 <h3 id="1-IP访问和域名访问区别"><a href="#1-IP访问和域名访问区别" class="headerlink" title="1.IP访问和域名访问区别"></a>1.IP访问和域名访问区别</h3><p>IP访问：直接访问至网站根目录</p>
 <p>域名访问：访问到中间件设置的网站目录</p>
 <h3 id="2-常见文件后缀解析对应安全"><a href="#2-常见文件后缀解析对应安全" class="headerlink" title="2.常见文件后缀解析对应安全"></a>2.常见文件后缀解析对应安全</h3><p>例如</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">扩展名</th>
-<th align="center">可执行文件路径</th>
-<th align="center">动作</th>
+<th style="text-align:center">扩展名</th>
+<th style="text-align:center">可执行文件路径</th>
+<th style="text-align:center">动作</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">.asp</td>
-<td align="center">C:\Windows\System32\inetsrv\asp.dll  GET HEAD…</td>
-<td align="center">GET HEAD…</td>
+<tbody>
+<tr>
+<td style="text-align:center">.asp</td>
+<td style="text-align:center">C:\Windows\System32\inetsrv\asp.dll  GET HEAD…</td>
+<td style="text-align:center">GET HEAD…</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>那么在访问后缀为.asp的文件路径时，网站将会解析为asp文件，即只要文件路径指向C:\Windows\System32\inetsrv\asp.dll，所对应的文件均会被解析为asp文件</p>
 <p><img src="image-20210802231812188.png" alt="image-20210802231812188"></p>
 <h3 id="3-常见安全访问措施"><a href="#3-常见安全访问措施" class="headerlink" title="3.常见安全访问措施"></a>3.常见安全访问措施</h3><p><img src="image-20210802231854595.png" alt="image-20210802231854595"></p>
@@ -188,7 +192,7 @@
 <p>当我们设置其执行权限为无时，访问对应的小马后门会被拒绝</p>
 <p><img src="image-20210802232417987.png" alt="image-20210802232417987"></p>
 <p>同理，用后门工具进行连接时会直接报错</p>
-<p>这两种防护措施都是对特定的目录进行设置的，如果设置了整个网站的权限为此，那么这个网站就不能正常运行，因为其本身运行就是相应的脚本执行，一般来说是设置..&#x2F;image目录无权限</p>
+<p>这两种防护措施都是对特定的目录进行设置的，如果设置了整个网站的权限为此，那么这个网站就不能正常运行，因为其本身运行就是相应的脚本执行，一般来说是设置../image目录无权限</p>
 <p>故绕过思路是将后门放置其它目录</p>
 <h3 id="5-中间件识别"><a href="#5-中间件识别" class="headerlink" title="5.中间件识别"></a>5.中间件识别</h3><h4 id="1-从网站数据包进行识别"><a href="#1-从网站数据包进行识别" class="headerlink" title="1.从网站数据包进行识别"></a>1.从网站数据包进行识别</h4><h5 id="1-返回数据包"><a href="#1-返回数据包" class="headerlink" title="1.返回数据包"></a>1.返回数据包</h5><p><img src="image-20210802232455509.png" alt="image-20210802232455509"></p>
 <h5 id="2-发送数据包"><a href="#2-发送数据包" class="headerlink" title="2.发送数据包"></a>2.发送数据包</h5><p>发送数据包的session通常带有</p>
@@ -196,10 +200,10 @@
 <p>其他脚本、工具</p>
 <h4 id="3-url输入不存在的路径"><a href="#3-url输入不存在的路径" class="headerlink" title="3.url输入不存在的路径"></a>3.url输入不存在的路径</h4><p>有的能成功显示，有的不能</p>
 <h3 id="6-识别脚本类型"><a href="#6-识别脚本类型" class="headerlink" title="6.识别脚本类型"></a>6.识别脚本类型</h3><h4 id="1-从数据库类型推导"><a href="#1-从数据库类型推导" class="headerlink" title="1.从数据库类型推导"></a>1.从数据库类型推导</h4><p>php ：mysql</p>
-<p>aspx：SQL server&#x2F;mysql   </p>
-<p>python：mysql&#x2F;mongodb&#x2F;postgresql   </p>
-<p>asp：ascess&#x2F;sql server</p>
-<p>jsp：mysql&#x2F;oracle</p>
+<p>aspx：SQL server/mysql   </p>
+<p>python：mysql/mongodb/postgresql   </p>
+<p>asp：ascess/sql server</p>
+<p>jsp：mysql/oracle</p>
 <p>access和SQL server不支持linux</p>
 <h4 id="2-从中间件识别"><a href="#2-从中间件识别" class="headerlink" title="2.从中间件识别"></a>2.从中间件识别</h4><p>Apache：php          iis：     tomcat：jsp</p>
 <h4 id="3-扫描工具"><a href="#3-扫描工具" class="headerlink" title="3.扫描工具"></a>3.扫描工具</h4><h4 id="4-谷歌搜集快照信息"><a href="#4-谷歌搜集快照信息" class="headerlink" title="4.谷歌搜集快照信息"></a>4.谷歌搜集快照信息</h4><h4 id="5-分析网站数据包"><a href="#5-分析网站数据包" class="headerlink" title="5.分析网站数据包"></a>5.分析网站数据包</h4><p>例：phpsessionid、jspsessionid</p>
