@@ -176,12 +176,12 @@
 <p><img src="image-20210131004437697.png" alt="image-20210131004437697"></p>
 <p><code>run autoroute -p</code>查看路由</p>
 <p><img src="image-20210131004506634.png" alt="image-20210131004506634"></p>
-<p><code>use  auxiliary/server/socks_proxy</code>开启socks代理</p>
+<p><code> use  auxiliary/server/socks_proxy</code>开启socks代理</p>
 <p><img src="image-20210131005020117.png" alt="image-20210131005020117"></p>
 <p>exploit执行，jobs查看任务</p>
 <p><img src="image-20210131005045576.png" alt="image-20210131005045576"></p>
 <p>此socks相当于一个vpn需要自己连接才能使用，此时需要借助proxychains代理链来调用socks代理</p>
-<p>编辑代理链的文件/etc/proxychains.conf设置代理，设置socks</p>
+<p>编辑代理链的文件&#x2F;etc&#x2F;proxychains.conf设置代理，设置socks</p>
 <p><img src="image-20210131005345851.png" alt="image-20210131005345851"></p>
 <p>此时使用proxychains连接客户机所在内网的任何一台机器都OK</p>
 <h3 id="3-ew"><a href="#3-ew" class="headerlink" title="3.ew"></a>3.ew</h3><h4 id="1-正向代理"><a href="#1-正向代理" class="headerlink" title="1.正向代理"></a>1.正向代理</h4><p>在客户机1上开启socks服务监听指定端口：<code>ew_win32.exe -s ssocksd -l 1080</code> （-s：指定协议，-l:指定端口）</p>
@@ -195,12 +195,12 @@
 <p><img src="image-20210205170622445.png" alt="image-20210205170622445"></p>
 <p>在客户机1开启一个socks代理把本地的流量转发到客户机的port2上：<code>ew_win32.exe -s rssocks -d host1 -e port2</code></p>
 <p><img src="image-20210205170632277.png" alt="image-20210205170632277"></p>
-<p>编辑代理链的文件/etc/proxychains.conf设置代理，设置socks为客户机</p>
+<p>编辑代理链的文件&#x2F;etc&#x2F;proxychains.conf设置代理，设置socks为客户机</p>
 <p><img src="image-20210205170718271.png" alt="image-20210205170718271"></p>
 <p>连接客户机1即可</p>
 <p><img src="image-20210205170757366.png" alt="image-20210205170757366"></p>
 <p>流量走向</p>
-<p>攻击机&lt;—-&gt;客户机1:port&lt;—-&gt;客户机1:port2&lt;—-&gt;客户机2</p>
+<p>攻击机&lt;—&gt;客户机1:port&lt;—&gt;客户机1:port2&lt;—&gt;客户机2</p>
 <h3 id="4-termite"><a href="#4-termite" class="headerlink" title="4.termite"></a>4.termite</h3><p>客户端监听端口：<code>agent_win32.exe -l port</code></p>
 <p><img src="image-20210131012439648.png" alt="image-20210131012439648"></p>
 <p>服务端连接到客户端即可：<code>./admin_linux_i586 -c 客户端ip -p 客户端port</code></p>

